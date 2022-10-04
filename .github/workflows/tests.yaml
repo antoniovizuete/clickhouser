@@ -18,9 +18,6 @@ jobs:
         node-version: [16]
 
     steps:
-      - name: Install ClickHouse
-        uses: EpicStep/clickhouse-github-action@v1.0.0
-
       - name: Install NodeJS ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
