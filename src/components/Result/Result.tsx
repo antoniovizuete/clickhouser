@@ -1,5 +1,5 @@
 import { NonIdealState, Spinner } from "@blueprintjs/core";
-import { isStringResult, QueryResult } from "../lib/peform-query";
+import { isStringResult, QueryResult } from "../../lib/peform-query";
 import TableResult from "./TableResult";
 
 type Params = {

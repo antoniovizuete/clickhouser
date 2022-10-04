@@ -23,12 +23,18 @@ export default function App() {
 
   return (
     <main className="h-full w-full">
-      <QueryForm
-        onSuccess={handleOnSuccess}
-        onError={handleOnError}
-        onQuery={setLoading}
-      />
-      <Result result={result} error={error} loading={loading} />
+      <div className="flex flex-col h-full">
+        <div className="flex-grow">
+          <QueryForm
+            onSuccess={handleOnSuccess}
+            onError={handleOnError}
+            onQuery={setLoading}
+          />
+        </div>
+        <div className="h-full">
+          <Result result={result} error={error} loading={loading} />
+        </div>
+      </div>
     </main>
   );
 }
