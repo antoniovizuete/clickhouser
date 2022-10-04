@@ -9,14 +9,25 @@ export default function App() {
   const [error, setError] = useState<string | undefined>();
   const [loading, setLoading] = useState(false);
 
+  const handleOnSuccess = (result?: QueryResult) => {
+    setResult(result);
+    setError(undefined);
+    setLoading(false);
+  };
+
+  const handleOnError = (error: string) => {
+    setResult(undefined);
+    setError(error);
+    setLoading(false);
+  };
+
   return (
     <main className="h-full w-full">
       <QueryForm
-        onSuccess={setResult}
-        onError={setError}
+        onSuccess={handleOnSuccess}
+        onError={handleOnError}
         onQuery={setLoading}
       />
-
       <Result result={result} error={error} loading={loading} />
     </main>
   );

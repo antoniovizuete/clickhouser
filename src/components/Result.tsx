@@ -22,7 +22,7 @@ export default function Result({ result, error, loading }: Params) {
       <NonIdealState
         icon="search"
         title="Clickhouser"
-        description="Clickhouse query runner"
+        description="ClickHouse query runner"
       />
     );
   }

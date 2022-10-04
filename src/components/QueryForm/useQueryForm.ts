@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { performQuery } from "../../lib/peform-query";
+import { useCallback, useEffect, useState } from "react";
+import { performQuery, QueryParam } from "../../lib/peform-query";
 import { QueryFormParams } from "./types";
 
 type QueryFormHookParams = QueryFormParams & {
@@ -8,6 +8,7 @@ type QueryFormHookParams = QueryFormParams & {
     username?: string;
     password?: string;
     serverAddress?: string;
+    params?: QueryParam[];
   };
 };
 
@@ -27,8 +28,13 @@ export const useQueryForm = ({
   const [password, setPassword] = useState<string | undefined>(
     defaults.password
   );
+  const [params, setParams] = useState<QueryParam[]>(defaults.params ?? []);
+  useEffect(() => {
+    console.log("params updated", params);
+  }, [params]);
 
   const runQuery = async () => {
+    console.log("runQuery", params);
     if (query && serverAddress && username) {
       try {
         onQuery?.(true);
@@ -37,6 +43,7 @@ export const useQueryForm = ({
           username: username ?? "default",
           password: password ?? "",
           query: query ?? "",
+          params: params ?? [],
         });
         onSuccess(response);
       } catch (e) {
@@ -58,6 +65,8 @@ export const useQueryForm = ({
     setUsername,
     password,
     setPassword,
+    params,
+    setParams,
     runQuery,
   };
 };

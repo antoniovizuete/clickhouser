@@ -14,7 +14,6 @@ export default function Editor({ value, onChange, onCmdEnter }: EditorProps) {
   const handleOnMount = (editor: monaco.editor.IStandaloneCodeEditor) => {
     editorRef.current = editor;
   };
-
   useEffect(() => {
     if (editorRef.current) {
       editorRef.current.addAction({
@@ -26,11 +25,11 @@ export default function Editor({ value, onChange, onCmdEnter }: EditorProps) {
         },
       });
     }
-  }, [value]);
+  }, [value, onCmdEnter]);
 
   return (
     <MonacoEditor
-      height="40vh"
+      height="50vh"
       width="100%"
       defaultValue={value ?? "-- TYPE YOUR SQL HERE"}
       language="sql"

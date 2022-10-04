@@ -13,6 +13,7 @@ export function performQuery({
   username,
   password,
   serverAddress,
+  params,
 }: Params): Promise<QueryResult> {
   return new Promise((resolve, reject) => {
     const queryParams = [
@@ -23,6 +24,9 @@ export function performQuery({
       "max_result_rows=1000",
       "max_result_bytes=10000000",
       "result_overflow_mode=break",
+      ...params.map(
+        (param) => `param_${param.key}=${encodeURIComponent(param.value)}`
+      ),
     ].join("&");
 
     const url = [serverAddress, queryParams].join(
@@ -30,7 +34,6 @@ export function performQuery({
     );
 
     const xhr = new XMLHttpRequest();
-
     xhr.open("POST", url, true);
 
     xhr.onreadystatechange = function () {
