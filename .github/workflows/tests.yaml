@@ -1,0 +1,42 @@
+name: Unit and Integration Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    strategy:
+      matrix:
+        node-version: [16]
+
+    steps:
+      - name: Install ClickHouse
+        uses: EpicStep/clickhouse-github-action@v1.0.0
+
+      - name: Install NodeJS ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Install NPM dependecies
+        run: npm install
+
+      - name: Build (tests are not implemented yet)
+        run: npm run build
+
+      # - name: Run unit tests
+      #   run: yarn test:unit
+
+      # - name: Run integration tests
+      #   run: yarn test:int

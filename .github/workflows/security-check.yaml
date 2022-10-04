@@ -1,0 +1,16 @@
+name: Security Check
+on:
+  workflow_run:
+    workflows: ["Unit and Integration Tests"]
+    branches: [main]
+    types:
+      - completed
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

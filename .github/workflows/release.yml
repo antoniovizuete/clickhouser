@@ -1,0 +1,31 @@
+name: Release
+on:
+  workflow_run:
+    workflows: ["Security Check"]
+    branches: [main]
+    types:
+      - completed
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+      - name: Install dependencies
+        run: npm install
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GIT_CREDENTIALS: ${{ secrets.GIT_CREDENTIALS }}
+        run: npx semantic-release
