@@ -4,6 +4,8 @@
 
 Clickhouser is a tool inspired on the ClickHouse built-in web client.
 
+![Screenshot](https://user-images.githubusercontent.com/1465370/193932950-65b157a8-dd07-4cda-a80c-c64850296130.png "Screenshot")
+
 It aims to provide some features:
 
 - Rich SQL editor.
