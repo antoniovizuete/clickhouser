@@ -1,5 +1,5 @@
 import MonacoEditor from "@monaco-editor/react";
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 import { useEffect, useRef, useState } from "react";
 
 type EditorProps = {
@@ -13,7 +13,7 @@ export default function Editor({ value, onChange, onCmdEnter }: EditorProps) {
 
   const handleOnMount = (editor: monaco.editor.IStandaloneCodeEditor) => {
     editorRef.current = editor;
-  }
+  };
 
   useEffect(() => {
     if (editorRef.current) {
@@ -23,15 +23,15 @@ export default function Editor({ value, onChange, onCmdEnter }: EditorProps) {
         keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter],
         run: () => {
           onCmdEnter?.();
-        }
-      })
+        },
+      });
     }
-  }, [value])
+  }, [value]);
 
   return (
     <MonacoEditor
       height="50vh"
-      width="80vw"
+      width="100%"
       defaultValue={value ?? "-- TYPE YOUR SQL HERE"}
       language="sql"
       onChange={onChange}
@@ -40,9 +40,8 @@ export default function Editor({ value, onChange, onCmdEnter }: EditorProps) {
         minimap: { enabled: false },
         fontSize: 16,
         scrollBeyondLastLine: false,
-        automaticLayout: true
+        automaticLayout: true,
       }}
-
     />
-  )
+  );
 }
