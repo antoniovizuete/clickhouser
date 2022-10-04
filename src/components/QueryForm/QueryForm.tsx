@@ -101,7 +101,11 @@ export default function QueryForm(props: QueryFormParams) {
           </Popover2>
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
-          <a href="#" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/antoniovizuete/clickhouser"
+            target="_blank"
+            rel="noreferrer"
+          >
             <GitHubIcon />
           </a>
         </Navbar.Group>
