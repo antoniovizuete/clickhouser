@@ -10,7 +10,8 @@ export type StringResult = {
 };
 
 export type JsonResult = {
-  data: (string | number | boolean)[];
+  data: (string | number | boolean)[][];
+  //| Record<string, string | number | boolean>[];
   meta: {
     name: string;
     type: string;

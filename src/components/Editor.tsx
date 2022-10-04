@@ -1,6 +1,6 @@
 import MonacoEditor from "@monaco-editor/react";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 type EditorProps = {
   value?: string;
@@ -30,7 +30,7 @@ export default function Editor({ value, onChange, onCmdEnter }: EditorProps) {
 
   return (
     <MonacoEditor
-      height="50vh"
+      height="40vh"
       width="100%"
       defaultValue={value ?? "-- TYPE YOUR SQL HERE"}
       language="sql"
