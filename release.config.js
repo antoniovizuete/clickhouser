@@ -1,4 +1,4 @@
-const { releaseRules } = require("./configs/release.rules");
+const { releaseRules } = require("./config/release.rules");
 const preset = "atom";
 
 module.exports = {
