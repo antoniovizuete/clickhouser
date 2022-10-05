@@ -1,3 +1,18 @@
+## [1.0.2](https://github.com/antoniovizuete/clickhouser/compare/v1.0.1...v1.0.2) (2022-10-05)
+
+
+### :art:
+
+* Fix a pixel problem ([5a102a5](https://github.com/antoniovizuete/clickhouser/commit/5a102a59013dc9897fe5b79353dc81660844efbf))
+
+### :rocket:
+
+* Add badge count to params button ([a4bafff](https://github.com/antoniovizuete/clickhouser/commit/a4bafffdc737b95dcf52731dd9a1ec1525d8465e))
+* Add hotkeys ([4a707aa](https://github.com/antoniovizuete/clickhouser/commit/4a707aa0519d5931540ed8ba4d6e4b40c1b0997e))
+* Add panes ([e697b85](https://github.com/antoniovizuete/clickhouser/commit/e697b85e4b0be918907ccdeed5c8de077bdc33f9))
+* Fit to starndars the ParameterDialog form ([05bad0a](https://github.com/antoniovizuete/clickhouser/commit/05bad0a2dd46d987da58d3d83ec1e1e89851d8f9))
+* Improve hotkeys ([bde7877](https://github.com/antoniovizuete/clickhouser/commit/bde787718ab74f529482516ad78f9f435e517c3f))
+
 ## [1.0.1](https://github.com/antoniovizuete/clickhouser/compare/v1.0.0...v1.0.1) (2022-10-05)
 
 
