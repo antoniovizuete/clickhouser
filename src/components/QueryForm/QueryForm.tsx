@@ -14,6 +14,7 @@ import { GitHubIcon } from "../svgs/GitHub";
 import Editor from "./components/Editor";
 import ParameterDialog from "./components/ParameterDialog";
 import ParametersMenu from "./components/ParametersMenu";
+import { useHotKeys } from "./hooks/useHotKeys";
 import { QueryFormParams } from "./types";
 import { useQueryForm } from "./useQueryForm";
 import { useQueryFormParamaterHandler } from "./useQueryFormParamaterHandler";
@@ -51,21 +52,31 @@ export default function QueryForm(props: QueryFormParams) {
     handleOnAddParameter,
   } = useQueryFormParamaterHandler({ params, setParams });
 
-  useHotkeys(
-    "ctrl+enter, cmd+enter",
-    () => {
-      runQuery();
-    },
-    [runQuery]
-  );
-
-  useHotkeys(
-    "ctrl+shift+p, cmd+shift+p",
-    () => {
-      handleOnAddParameter();
-    },
-    [handleOnAddParameter]
-  );
+  const [HotKeysHelpDialog, openHelpDialog] = useHotKeys({
+    hotKeys: [
+      {
+        combo: "ctrl+enter, cmd+enter",
+        description: "Run query",
+        callback: () => {
+          runQuery();
+        },
+        deps: [runQuery],
+      },
+      {
+        combo: "ctrl+shift+p, cmd+shift+p",
+        description: "Add parameter",
+        callback: () => {
+          handleOnAddParameter();
+        },
+        deps: [handleOnAddParameter],
+      },
+      {
+        combo: "ctrl+shift+h, cmd+shift+h",
+        description: "Show this help",
+        help: true,
+      },
+    ],
+  });
 
   return (
     <>
@@ -140,7 +151,13 @@ export default function QueryForm(props: QueryFormParams) {
           </Navbar>
         </Allotment.Pane>
         <Allotment.Pane>
-          <Editor value={query} onChange={setQuery} onCmdEnter={runQuery} />
+          <Editor
+            value={query}
+            onChange={setQuery}
+            onCmdEnter={runQuery}
+            onCmdShitfH={openHelpDialog}
+            onCmdShitfP={handleOnAddParameter}
+          />
         </Allotment.Pane>
       </Allotment>
       <ParameterDialog
@@ -149,6 +166,7 @@ export default function QueryForm(props: QueryFormParams) {
         onClose={closeParameterDialog}
         onConfirm={handleOnConfirmParameterDialog}
       />
+      {HotKeysHelpDialog}
     </>
   );
 }
