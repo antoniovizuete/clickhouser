@@ -29,7 +29,7 @@ export default function Editor({ value, onChange, onCmdEnter }: EditorProps) {
 
   return (
     <MonacoEditor
-      height="50vh"
+      height="100%"
       width="100%"
       defaultValue={value ?? "-- TYPE YOUR SQL HERE"}
       language="sql"
