@@ -11,3 +11,7 @@ body,
 :root {
   --focus-border: #eca834;
 }
+
+.bp4-input {
+  height: 31px;
+}
