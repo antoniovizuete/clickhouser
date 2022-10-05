@@ -4,6 +4,7 @@ import {
   InputGroup,
   Intent,
   Navbar,
+  Tag,
 } from "@blueprintjs/core";
 import { Popover2 } from "@blueprintjs/popover2";
 import { Allotment } from "allotment";
@@ -98,11 +99,16 @@ export default function QueryForm(props: QueryFormParams) {
                 minimal
                 placement="bottom-start"
               >
-                <Button
-                  icon="variable"
-                  intent={Intent.NONE}
-                  text="Parameters"
-                />
+                <Button icon="variable" intent={Intent.NONE}>
+                  Paramertes{" "}
+                  {params.length > 0 ? (
+                    <Tag minimal round>
+                      {params.length}
+                    </Tag>
+                  ) : (
+                    ""
+                  )}
+                </Button>
               </Popover2>
             </Navbar.Group>
             <Navbar.Group align={Alignment.RIGHT}>
