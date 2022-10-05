@@ -6,9 +6,17 @@ type EditorProps = {
   value?: string;
   onChange?: (value?: string) => void;
   onCmdEnter?: () => void;
+  onCmdShitfH?: () => void;
+  onCmdShitfP?: () => void;
 };
 
-export default function Editor({ value, onChange, onCmdEnter }: EditorProps) {
+export default function Editor({
+  value,
+  onChange,
+  onCmdEnter,
+  onCmdShitfH,
+  onCmdShitfP,
+}: EditorProps) {
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor>();
 
   const handleOnMount = (editor: monaco.editor.IStandaloneCodeEditor) => {
@@ -24,12 +32,32 @@ export default function Editor({ value, onChange, onCmdEnter }: EditorProps) {
           onCmdEnter?.();
         },
       });
+      editorRef.current.addAction({
+        id: "show-help",
+        label: "Show help",
+        keybindings: [
+          monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KeyH,
+        ],
+        run: () => {
+          onCmdShitfH?.();
+        },
+      });
+      editorRef.current.addAction({
+        id: "add-parameter",
+        label: "Add parameter",
+        keybindings: [
+          monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KeyP,
+        ],
+        run: () => {
+          onCmdShitfP?.();
+        },
+      });
     }
   }, [value, onCmdEnter]);
 
   return (
     <MonacoEditor
-      height="50vh"
+      height="100%"
       width="100%"
       defaultValue={value ?? "-- TYPE YOUR SQL HERE"}
       language="sql"

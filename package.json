@@ -18,9 +18,11 @@
     "@blueprintjs/popover2": "^1.6.7",
     "@blueprintjs/table": "^4.6.8",
     "@monaco-editor/react": "^4.4.6",
+    "allotment": "1.17.0",
     "monaco-editor": "0.34.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-hotkeys-hook": "3.4.7",
     "react-split": "2.0.14"
   },
   "devDependencies": {

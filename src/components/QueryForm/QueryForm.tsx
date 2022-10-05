@@ -4,15 +4,17 @@ import {
   InputGroup,
   Intent,
   Navbar,
+  Tag,
 } from "@blueprintjs/core";
 import { Popover2 } from "@blueprintjs/popover2";
+import { Allotment } from "allotment";
+import { useHotkeys } from "react-hotkeys-hook";
 
-import { useState } from "react";
-import { QueryParam } from "../../lib/peform-query";
 import { GitHubIcon } from "../svgs/GitHub";
 import Editor from "./components/Editor";
 import ParameterDialog from "./components/ParameterDialog";
 import ParametersMenu from "./components/ParametersMenu";
+import { useHotKeys } from "./hooks/useHotKeys";
 import { QueryFormParams } from "./types";
 import { useQueryForm } from "./useQueryForm";
 import { useQueryFormParamaterHandler } from "./useQueryFormParamaterHandler";
@@ -50,73 +52,121 @@ export default function QueryForm(props: QueryFormParams) {
     handleOnAddParameter,
   } = useQueryFormParamaterHandler({ params, setParams });
 
+  const [HotKeysHelpDialog, openHelpDialog] = useHotKeys({
+    hotKeys: [
+      {
+        combo: "ctrl+enter, cmd+enter",
+        description: "Run query",
+        callback: () => {
+          runQuery();
+        },
+        deps: [runQuery],
+      },
+      {
+        combo: "ctrl+shift+p, cmd+shift+p",
+        description: "Add parameter",
+        callback: () => {
+          handleOnAddParameter();
+        },
+        deps: [handleOnAddParameter],
+      },
+      {
+        combo: "ctrl+shift+h, cmd+shift+h",
+        description: "Show this help",
+        help: true,
+      },
+    ],
+  });
+
   return (
-    <main className="h-full w-full">
-      <Navbar className="mb-2">
-        <Navbar.Group align={Alignment.LEFT}>
-          <Navbar.Heading className="font-semibold tracking-tight text-[#eca834]">
-            Clickhouser
-          </Navbar.Heading>
-          <InputGroup
-            leftIcon="globe-network"
-            value={serverAddress}
-            placeholder="Server address"
-            onChange={(e) => setServerAddress(e.target.value)}
-            className="flex-grow"
-            size={40}
-          />
-          <InputGroup
-            leftIcon="user"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <InputGroup
-            leftIcon="lock"
-            placeholder="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button
-            icon="play"
-            intent="warning"
-            text="Run query"
-            onClick={runQuery}
-            disabled={!query}
-          />
-          <Popover2
-            content={
-              <ParametersMenu
-                params={params}
-                onClickAdd={handleOnAddParameter}
-                onClickRemove={handleOnRemoveParameter}
-                onClickEdit={handleOnEditParameter}
+    <>
+      <Allotment vertical>
+        <Allotment.Pane maxSize={48} minSize={48}>
+          <Navbar className="mb-2">
+            <Navbar.Group align={Alignment.LEFT}>
+              <Navbar.Heading className="font-semibold tracking-tight text-[#eca834]">
+                Clickhouser
+              </Navbar.Heading>
+              <InputGroup
+                leftIcon="globe-network"
+                value={serverAddress}
+                placeholder="Server address"
+                onChange={(e) => setServerAddress(e.target.value)}
+                className="flex-grow"
+                size={40}
               />
-            }
-            minimal
-            placement="bottom-start"
-          >
-            <Button icon="variable" intent={Intent.NONE} text="Parameters" />
-          </Popover2>
-        </Navbar.Group>
-        <Navbar.Group align={Alignment.RIGHT}>
-          <a
-            href="https://github.com/antoniovizuete/clickhouser"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <GitHubIcon />
-          </a>
-        </Navbar.Group>
-      </Navbar>
-      <Editor value={query} onChange={setQuery} onCmdEnter={runQuery} />
+              <InputGroup
+                leftIcon="user"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <InputGroup
+                leftIcon="lock"
+                placeholder="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Button
+                icon="play"
+                intent="warning"
+                text="Run query"
+                onClick={runQuery}
+                disabled={!query}
+              />
+              <Popover2
+                content={
+                  <ParametersMenu
+                    params={params}
+                    onClickAdd={handleOnAddParameter}
+                    onClickRemove={handleOnRemoveParameter}
+                    onClickEdit={handleOnEditParameter}
+                  />
+                }
+                minimal
+                placement="bottom-start"
+              >
+                <Button icon="variable" intent={Intent.NONE}>
+                  Paramertes{" "}
+                  {params.length > 0 ? (
+                    <Tag minimal round>
+                      {params.length}
+                    </Tag>
+                  ) : (
+                    ""
+                  )}
+                </Button>
+              </Popover2>
+            </Navbar.Group>
+            <Navbar.Group align={Alignment.RIGHT}>
+              <a
+                href="https://github.com/antoniovizuete/clickhouser"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <GitHubIcon />
+              </a>
+            </Navbar.Group>
+          </Navbar>
+        </Allotment.Pane>
+        <Allotment.Pane>
+          <Editor
+            value={query}
+            onChange={setQuery}
+            onCmdEnter={runQuery}
+            onCmdShitfH={openHelpDialog}
+            onCmdShitfP={handleOnAddParameter}
+          />
+        </Allotment.Pane>
+      </Allotment>
       <ParameterDialog
         data={parameterDialogData}
         isOpen={isParameterDialogOpen}
         onClose={closeParameterDialog}
         onConfirm={handleOnConfirmParameterDialog}
       />
-    </main>
+      {HotKeysHelpDialog}
+    </>
   );
 }

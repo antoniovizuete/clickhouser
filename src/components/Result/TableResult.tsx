@@ -22,8 +22,12 @@ export default function TableResult({ result }: Params) {
     <div className="border border-gray-300 overflow-auto h-full">
       <Table2
         numRows={result.rows}
-        selectionModes={SelectionModes.NONE}
+        selectionModes={SelectionModes.ROWS_ONLY}
         className="h-full"
+        enableColumnResizing={false}
+        enableColumnReordering={false}
+        enableRowResizing={false}
+        enableRowReordering={false}
       >
         {tableDatasetComponents}
       </Table2>

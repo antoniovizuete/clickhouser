@@ -1,4 +1,6 @@
+import { Allotment } from "allotment";
 import { useState } from "react";
+
 import { QueryResult } from "../lib/peform-query";
 import "../styles/App.css";
 import QueryForm from "./QueryForm";
@@ -22,19 +24,17 @@ export default function App() {
   };
 
   return (
-    <main className="h-full w-full">
-      <div className="flex flex-col h-full">
-        <div className="flex-grow">
-          <QueryForm
-            onSuccess={handleOnSuccess}
-            onError={handleOnError}
-            onQuery={setLoading}
-          />
-        </div>
-        <div className="h-full">
-          <Result result={result} error={error} loading={loading} />
-        </div>
-      </div>
-    </main>
+    <Allotment vertical>
+      <Allotment.Pane minSize={100}>
+        <QueryForm
+          onSuccess={handleOnSuccess}
+          onError={handleOnError}
+          onQuery={setLoading}
+        />
+      </Allotment.Pane>
+      <Allotment.Pane>
+        <Result result={result} error={error} loading={loading} />
+      </Allotment.Pane>
+    </Allotment>
   );
 }

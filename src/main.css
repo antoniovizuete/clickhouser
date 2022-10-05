@@ -7,3 +7,11 @@ body,
 #root {
   height: 100vh;
 }
+
+:root {
+  --focus-border: #eca834;
+}
+
+.bp4-input {
+  height: 31px;
+}
