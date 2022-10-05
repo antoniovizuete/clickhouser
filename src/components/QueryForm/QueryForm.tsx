@@ -8,6 +8,7 @@ import {
 } from "@blueprintjs/core";
 import { Popover2 } from "@blueprintjs/popover2";
 import { Allotment } from "allotment";
+import { useHotkeys } from "react-hotkeys-hook";
 
 import { GitHubIcon } from "../svgs/GitHub";
 import Editor from "./components/Editor";
@@ -49,6 +50,22 @@ export default function QueryForm(props: QueryFormParams) {
     handleOnEditParameter,
     handleOnAddParameter,
   } = useQueryFormParamaterHandler({ params, setParams });
+
+  useHotkeys(
+    "ctrl+enter, cmd+enter",
+    () => {
+      runQuery();
+    },
+    [runQuery]
+  );
+
+  useHotkeys(
+    "ctrl+shift+p, cmd+shift+p",
+    () => {
+      handleOnAddParameter();
+    },
+    [handleOnAddParameter]
+  );
 
   return (
     <>
