@@ -29,12 +29,8 @@ export const useQueryForm = ({
     defaults.password
   );
   const [params, setParams] = useState<QueryParam[]>(defaults.params ?? []);
-  useEffect(() => {
-    console.log("params updated", params);
-  }, [params]);
 
   const runQuery = async () => {
-    console.log("runQuery", params);
     if (query && serverAddress && username) {
       try {
         onQuery?.(true);
