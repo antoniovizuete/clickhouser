@@ -1,3 +1,14 @@
+## [1.0.1](https://github.com/antoniovizuete/clickhouser/compare/v1.0.0...v1.0.1) (2022-10-05)
+
+
+### :art:
+
+* Remove console.logs ([659ac46](https://github.com/antoniovizuete/clickhouser/commit/659ac465b582bdc2b186bb7b275984adca9038da))
+
+### :memo:
+
+* Update README.md [skip ci] ([f4cdacf](https://github.com/antoniovizuete/clickhouser/commit/f4cdacf0de2bc162a114d031bf281a0f737c05e8))
+
 # 1.0.0 (2022-10-04)
 
 
