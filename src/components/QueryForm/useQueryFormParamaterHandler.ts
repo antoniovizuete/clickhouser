@@ -24,11 +24,9 @@ export const useQueryFormParamaterHandler = ({ params, setParams }: Props) => {
       setParams((prev) => [...prev, { key, value }]);
     } else {
       setParams((prev) => {
-        console.log("handling edit", key, value);
         const newParams = [
           ...prev.map((param) => (param.key === key ? { key, value } : param)),
         ];
-        console.log("newParams", newParams);
         return newParams;
       });
     }
@@ -39,7 +37,6 @@ export const useQueryFormParamaterHandler = ({ params, setParams }: Props) => {
   };
   const handleOnEditParameter = (key: string) => {
     const param = params.find((param) => param.key === key);
-    console.log(key, param);
     if (param) {
       setParameterDialogData(param);
       openParameterDialog();
