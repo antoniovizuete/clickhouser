@@ -1,21 +1,22 @@
 import MonacoEditor from "@monaco-editor/react";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 import { useEffect, useRef } from "react";
+import { addAction } from "../../../lib/editor-helpers/add-action.editor.helper";
 
 type EditorProps = {
   value?: string;
   onChange?: (value?: string) => void;
   onCmdEnter?: () => void;
-  onCmdShitfH?: () => void;
-  onCmdShitfP?: () => void;
+  onOptionH?: () => void;
+  onOptionP?: () => void;
 };
 
 export default function Editor({
   value,
   onChange,
   onCmdEnter,
-  onCmdShitfH,
-  onCmdShitfP,
+  onOptionH,
+  onOptionP,
 }: EditorProps) {
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor>();
 
@@ -24,36 +25,38 @@ export default function Editor({
   };
   useEffect(() => {
     if (editorRef.current) {
-      editorRef.current.addAction({
+      addAction(editorRef.current, {
         id: "run-query",
         label: "Run query",
         keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter],
         run: () => {
           onCmdEnter?.();
         },
+        contextMenuGroupId: "navigation",
+        contextMenuOrder: 1.5,
       });
-      editorRef.current.addAction({
+      addAction(editorRef.current, {
         id: "show-help",
         label: "Show help",
-        keybindings: [
-          monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KeyH,
-        ],
+        keybindings: [monaco.KeyMod.Alt | monaco.KeyCode.KeyH],
         run: () => {
-          onCmdShitfH?.();
+          onOptionH?.();
         },
+        contextMenuGroupId: "navigation",
+        contextMenuOrder: 1.5,
       });
-      editorRef.current.addAction({
+      addAction(editorRef.current, {
         id: "add-parameter",
         label: "Add parameter",
-        keybindings: [
-          monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KeyP,
-        ],
+        keybindings: [monaco.KeyMod.Alt | monaco.KeyCode.KeyP],
         run: () => {
-          onCmdShitfP?.();
+          onOptionP?.();
         },
+        contextMenuGroupId: "navigation",
+        contextMenuOrder: 1.5,
       });
     }
-  }, [value, onCmdEnter]);
+  }, [value, onCmdEnter, onOptionH, onOptionP]);
 
   return (
     <MonacoEditor
