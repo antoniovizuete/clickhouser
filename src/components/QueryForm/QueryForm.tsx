@@ -52,31 +52,27 @@ export default function QueryForm(props: QueryFormParams) {
     handleOnAddParameter,
   } = useQueryFormParamaterHandler({ params, setParams });
 
-  const [HotKeysHelpDialog, openHelpDialog] = useHotKeys({
-    hotKeys: [
-      {
-        combo: "ctrl+enter, cmd+enter",
-        description: "Run query",
-        callback: () => {
-          runQuery();
-        },
-        deps: [runQuery],
+  const [HotKeysHelpDialog, openHelpDialog] = useHotKeys([
+    {
+      combo: "cmd+enter",
+      description: "Run query",
+      callback: () => {
+        runQuery();
       },
-      {
-        combo: "ctrl+shift+p, cmd+shift+p",
-        description: "Add parameter",
-        callback: () => {
-          handleOnAddParameter();
-        },
-        deps: [handleOnAddParameter],
-      },
-      {
-        combo: "ctrl+shift+h, cmd+shift+h",
-        description: "Show this help",
-        help: true,
-      },
-    ],
-  });
+      deps: [runQuery],
+    },
+    {
+      combo: "alt+p, option+p",
+      description: "Add parameter",
+      callback: handleOnAddParameter,
+      deps: [handleOnAddParameter],
+    },
+    {
+      combo: "alt+h, option+h",
+      description: "Show this help",
+      help: true,
+    },
+  ]);
 
   return (
     <>
@@ -155,8 +151,8 @@ export default function QueryForm(props: QueryFormParams) {
             value={query}
             onChange={setQuery}
             onCmdEnter={runQuery}
-            onCmdShitfH={openHelpDialog}
-            onCmdShitfP={handleOnAddParameter}
+            onOptionH={openHelpDialog}
+            onOptionP={handleOnAddParameter}
           />
         </Allotment.Pane>
       </Allotment>

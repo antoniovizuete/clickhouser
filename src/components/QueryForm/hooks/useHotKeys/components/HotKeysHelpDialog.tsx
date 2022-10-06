@@ -9,6 +9,34 @@ export type HotKeysHelpDialogRef = {
   open: () => void;
 };
 
+const isMacOs = () => navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+const isMacOsKeystroke = (keystroke: string) =>
+  isMacOs() && (keystroke.includes("cmd") || keystroke.includes("option"));
+const isNonMacOsKeystroke = (keystroke: string) =>
+  !isMacOs() && (keystroke.includes("ctrl") || keystroke.includes("alt"));
+
+const filterCombosByOS = (combo: string) =>
+  isMacOsKeystroke(combo) || isNonMacOsKeystroke(combo);
+
+const trasformToSymbol = (key: string) => {
+  console.log("tranformToSymbol#key", key);
+  if (!isMacOs()) {
+    return key;
+  }
+  switch (key) {
+    case "CMD":
+      return "⌘";
+    case "OPTION":
+      return "⌥";
+    case "CTRL":
+      return "⌃";
+    case "SHIFT":
+      return "⇧";
+    default:
+      return key;
+  }
+};
+
 const HotKeysHelpDialog = forwardRef<HotKeysHelpDialogRef, Props>(
   ({ hotKeys }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -22,14 +50,19 @@ const HotKeysHelpDialog = forwardRef<HotKeysHelpDialogRef, Props>(
         .join("")
         .split(",")
         .filter(Boolean)
+        .filter(filterCombosByOS)
         .flatMap((combo) => (
           <div className="mx-2 my-1 gap-1 flex flex-row justify-end">
-            {mapComboToTags(combo)}
+            {mapComboToTags(combo.trim())}
           </div>
         ));
 
     const mapComboToTags = (combo: string) =>
-      combo.split("+").map((key) => <Tag minimal>{key.toUpperCase()}</Tag>);
+      combo.split("+").map((key) => (
+        <Tag key={key} minimal>
+          {trasformToSymbol(key.toUpperCase())}
+        </Tag>
+      ));
 
     return (
       <Dialog isOpen={isOpen} onClose={close}>

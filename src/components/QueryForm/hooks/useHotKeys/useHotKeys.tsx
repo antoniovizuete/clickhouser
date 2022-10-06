@@ -5,27 +5,21 @@ import HotKeysHelpDialog, {
 } from "./components/HotKeysHelpDialog";
 import { HotKey } from "./types";
 
-type Props = {
-  hotKeys: HotKey[];
-};
-
 type ReturnType = [JSX.Element, () => void];
 
-export const useHotKeys = ({ hotKeys }: Props): ReturnType => {
+export const useHotKeys = (hotKeys: HotKey[]): ReturnType => {
   const helpDialogRef = useRef<HotKeysHelpDialogRef>(null);
+  const openHelpDialog = () => {
+    helpDialogRef.current?.open();
+  };
 
   hotKeys.forEach(({ combo, callback, help, deps }) => {
-    if (!help) {
-      useHotkeys(combo, callback, deps);
-    } else {
-      useHotkeys(
-        combo,
-        () => {
-          helpDialogRef.current?.open();
-        },
-        deps
-      );
-    }
+    useHotkeys(
+      combo,
+      !help ? callback : openHelpDialog,
+      { enableOnTags: ["INPUT", "SELECT", "TEXTAREA"] },
+      deps
+    );
   });
 
   return [
