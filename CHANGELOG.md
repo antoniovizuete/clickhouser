@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/antoniovizuete/clickhouser/compare/v1.0.2...v1.0.3) (2022-10-06)
+
+
+### :rocket:
+
+* Improve help dialog ([37726f3](https://github.com/antoniovizuete/clickhouser/commit/37726f3ebb2109953b38bc9f07895086e5de1aaa))
+
 ## [1.0.2](https://github.com/antoniovizuete/clickhouser/compare/v1.0.1...v1.0.2) (2022-10-05)
 
 
