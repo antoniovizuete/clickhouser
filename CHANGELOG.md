@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/antoniovizuete/clickhouser/compare/v1.1.0...v1.1.1) (2022-10-07)
+
+
+### :bug:
+
+* Remove sleep ([4a72883](https://github.com/antoniovizuete/clickhouser/commit/4a728835318a72be028bbc67d828e9768394cbfa))
+
 # [1.1.0](https://github.com/antoniovizuete/clickhouser/compare/v1.0.4...v1.1.0) (2022-10-07)
 
 
