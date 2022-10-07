@@ -55,9 +55,9 @@ export default function QueryForm(props: QueryFormParams) {
       combo: "cmd+enter",
       description: "Run query",
       callback: () => {
-        runQuery();
+        runQuery(query);
       },
-      deps: [runQuery],
+      deps: [runQuery, query],
     },
     {
       combo: "alt+p, option+p",
@@ -104,10 +104,11 @@ export default function QueryForm(props: QueryFormParams) {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <Button
+                className="mx-1"
                 icon="play"
                 intent="warning"
                 text="Run query"
-                onClick={runQuery}
+                onClick={() => runQuery(query)}
                 disabled={!query}
               />
               <Popover2

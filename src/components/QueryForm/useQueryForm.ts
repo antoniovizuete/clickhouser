@@ -30,7 +30,7 @@ export const useQueryForm = ({
   );
   const [params, setParams] = useState<QueryParam[]>(defaults.params ?? []);
 
-  const runQuery = async () => {
+  const runQuery = async (query?: string) => {
     if (query && serverAddress && username) {
       try {
         onQuery?.(true);

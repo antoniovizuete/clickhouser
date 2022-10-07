@@ -6,7 +6,7 @@ import { addAction } from "../../../lib/editor-helpers/add-action.editor.helper"
 type EditorProps = {
   value?: string;
   onChange?: (value?: string) => void;
-  onCmdEnter?: () => void;
+  onCmdEnter?: (query?: string) => void;
   onOptionH?: () => void;
   onOptionP?: () => void;
 };
@@ -30,7 +30,7 @@ export default function Editor({
         label: "Run query",
         keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter],
         run: () => {
-          onCmdEnter?.();
+          onCmdEnter?.(editorRef.current?.getValue());
         },
         contextMenuGroupId: "navigation",
         contextMenuOrder: 1.5,
