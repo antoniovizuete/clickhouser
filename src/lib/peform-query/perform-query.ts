@@ -13,7 +13,7 @@ export function performQuery({
   username,
   password,
   serverAddress,
-  params,
+  jsonParams = "{}",
 }: Params): Promise<QueryResult> {
   return new Promise((resolve, reject) => {
     const queryParams = [
@@ -24,8 +24,8 @@ export function performQuery({
       "max_result_rows=1000",
       "max_result_bytes=10000000",
       "result_overflow_mode=break",
-      ...params.map(
-        (param) => `param_${param.key}=${encodeURIComponent(param.value)}`
+      ...Object.entries(JSON.parse(jsonParams)).map(
+        ([key, value]) => `param_${key}=${encodeURIComponent(String(value))}`
       ),
     ].join("&");
 

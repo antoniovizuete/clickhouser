@@ -1,76 +1,27 @@
-import {
-  Alignment,
-  Button,
-  InputGroup,
-  Intent,
-  Navbar,
-  Tag,
-} from "@blueprintjs/core";
-import { Popover2 } from "@blueprintjs/popover2";
+import { Alignment, Button, InputGroup, Navbar } from "@blueprintjs/core";
 import { Allotment } from "allotment";
+import { QueryResult } from "../../lib/peform-query";
 
 import Editor from "./components/Editor";
-import ParameterDialog from "./components/ParameterDialog";
-import ParametersMenu from "./components/ParametersMenu";
-import { useHotKeys } from "./hooks/useHotKeys";
-import { QueryFormParams } from "./types";
-import { useQueryForm } from "./useQueryForm";
-import { useQueryFormParamaterHandler } from "./useQueryFormParamaterHandler";
+import { useQueryForm } from "./hooks/useQueryForm";
+import { Actions } from "./QueryForm.reducer";
 
-export default function QueryForm(props: QueryFormParams) {
+export type QueryFormProps = {
+  onPerformQuery: () => void;
+  onSuccess: (result?: QueryResult) => void;
+  onError: (error?: string) => void;
+};
+
+export default function QueryForm(props: QueryFormProps) {
   const {
-    serverAddress,
-    setServerAddress,
-    username,
-    setUsername,
-    password,
-    setPassword,
-    query,
-    setQuery,
-    params,
-    setParams,
-    runQuery,
-  } = useQueryForm({
-    defaults: {
-      serverAddress: "http://localhost:8123/",
-      username: "default",
-      password: "",
-      query: "SELECT 1",
-    },
-    ...props,
-  });
-
-  const {
-    isParameterDialogOpen,
-    parameterDialogData,
-    closeParameterDialog,
-    handleOnConfirmParameterDialog,
-    handleOnRemoveParameter,
-    handleOnEditParameter,
-    handleOnAddParameter,
-  } = useQueryFormParamaterHandler({ params, setParams });
-
-  const [HotKeysHelpDialog, openHelpDialog] = useHotKeys([
-    {
-      combo: "cmd+enter",
-      description: "Run query",
-      callback: () => {
-        runQuery(query);
-      },
-      deps: [runQuery, query],
-    },
-    {
-      combo: "alt+p, option+p",
-      description: "Add parameter",
-      callback: handleOnAddParameter,
-      deps: [handleOnAddParameter],
-    },
-    {
-      combo: "alt+h, option+h",
-      description: "Show this help",
-      help: true,
-    },
-  ]);
+    state: { query, password, serverAddress, username, jsonParams },
+    dispatch,
+    performQuery,
+    queryEditorRef,
+    paramsEditorRef,
+    openHelpDialog,
+    HotKeysHelpDialog,
+  } = useQueryForm(props);
 
   return (
     <>
@@ -81,12 +32,16 @@ export default function QueryForm(props: QueryFormParams) {
               <Navbar.Heading className="font-semibold tracking-tight text-[#eca834]">
                 Clickhouser
               </Navbar.Heading>
-              <Button className="mx-1" icon="help" onClick={openHelpDialog} />
               <InputGroup
                 leftIcon="globe-network"
                 value={serverAddress}
                 placeholder="Server address"
-                onChange={(e) => setServerAddress(e.target.value)}
+                onChange={(e) =>
+                  dispatch({
+                    type: Actions.SetServerAddress,
+                    payload: e.target.value,
+                  })
+                }
                 className="flex-grow"
                 size={40}
               />
@@ -94,65 +49,79 @@ export default function QueryForm(props: QueryFormParams) {
                 leftIcon="user"
                 placeholder="Username"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) =>
+                  dispatch({
+                    type: Actions.SetUsername,
+                    payload: e.target.value,
+                  })
+                }
               />
               <InputGroup
                 leftIcon="lock"
                 placeholder="Password"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) =>
+                  dispatch({
+                    type: Actions.SetPassword,
+                    payload: e.target.value,
+                  })
+                }
               />
               <Button
                 className="mx-1"
                 icon="play"
                 intent="warning"
-                text="Run query"
-                onClick={() => runQuery(query)}
+                aria-label="Run query"
+                onClick={() => performQuery({ query, jsonParams })}
                 disabled={!query}
               />
-              <Popover2
-                content={
-                  <ParametersMenu
-                    params={params}
-                    onClickAdd={handleOnAddParameter}
-                    onClickRemove={handleOnRemoveParameter}
-                    onClickEdit={handleOnEditParameter}
-                  />
-                }
-                minimal
-                placement="bottom-start"
-              >
-                <Button icon="variable" intent={Intent.NONE}>
-                  Parameters{" "}
-                  {params.length > 0 ? (
-                    <Tag minimal round>
-                      {params.length}
-                    </Tag>
-                  ) : (
-                    ""
-                  )}
-                </Button>
-              </Popover2>
+              <Button icon="help" onClick={openHelpDialog} />
             </Navbar.Group>
           </Navbar>
         </Allotment.Pane>
         <Allotment.Pane>
-          <Editor
-            value={query}
-            onChange={setQuery}
-            onCmdEnter={runQuery}
-            onOptionH={openHelpDialog}
-            onOptionP={handleOnAddParameter}
-          />
+          <Allotment>
+            <Allotment.Pane>
+              <div className="py-1 px-3 text-xs">Query</div>
+              <Editor
+                ref={queryEditorRef}
+                language="sql"
+                defaultValue={"-- TYPE YOUR SQL HERE"}
+                value={query}
+                onChange={(query) => {
+                  dispatch({ type: Actions.SetQuery, payload: query });
+                }}
+                onCmdEnter={(editor) => {
+                  performQuery({
+                    query: editor.getValue(),
+                    jsonParams: paramsEditorRef.current?.getValue(),
+                  });
+                }}
+                onOptionH={openHelpDialog}
+              />
+            </Allotment.Pane>
+            <Allotment.Pane>
+              <div className="py-1 px-3 text-xs">Parameters</div>
+              <Editor
+                ref={paramsEditorRef}
+                language="json"
+                value={jsonParams}
+                onChange={(jsonParams) =>
+                  dispatch({ type: Actions.SetJsonParams, payload: jsonParams })
+                }
+                onCmdEnter={(editor) => {
+                  performQuery({
+                    jsonParams: editor.getValue(),
+                    query: queryEditorRef.current?.getValue(),
+                  });
+                }}
+                onOptionH={openHelpDialog}
+              />
+            </Allotment.Pane>
+          </Allotment>
         </Allotment.Pane>
       </Allotment>
-      <ParameterDialog
-        data={parameterDialogData}
-        isOpen={isParameterDialogOpen}
-        onClose={closeParameterDialog}
-        onConfirm={handleOnConfirmParameterDialog}
-      />
       {HotKeysHelpDialog}
     </>
   );

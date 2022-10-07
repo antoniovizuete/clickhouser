@@ -18,7 +18,7 @@ export default function App() {
     setLoading(false);
   };
 
-  const handleOnError = (error: string) => {
+  const handleOnError = (error?: string) => {
     setResult(undefined);
     setError(error);
     setLoading(false);
@@ -30,7 +30,7 @@ export default function App() {
         <QueryForm
           onSuccess={handleOnSuccess}
           onError={handleOnError}
-          onQuery={setLoading}
+          onPerformQuery={() => setLoading(true)}
         />
       </Allotment.Pane>
       <Allotment.Pane>

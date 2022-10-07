@@ -1,36 +1,48 @@
 import MonacoEditor from "@monaco-editor/react";
-import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
-import { useEffect, useRef } from "react";
+import {
+  editor,
+  KeyCode,
+  KeyMod,
+} from "monaco-editor/esm/vs/editor/editor.api";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { addAction } from "../../../lib/editor-helpers/add-action.editor.helper";
+import { QueryFormContextType } from "../QueryForm.context";
 
 type EditorProps = {
+  defaultValue?: string;
+  language: "sql" | "json";
   value?: string;
   onChange?: (value?: string) => void;
-  onCmdEnter?: (query?: string) => void;
+  onCmdEnter?: (editor: editor.IStandaloneCodeEditor) => void;
   onOptionH?: () => void;
-  onOptionP?: () => void;
 };
 
-export default function Editor({
-  value,
-  onChange,
-  onCmdEnter,
-  onOptionH,
-  onOptionP,
-}: EditorProps) {
-  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor>();
+export type EditorRef = {
+  getValue: () => string | undefined;
+};
 
-  const handleOnMount = (editor: monaco.editor.IStandaloneCodeEditor) => {
+const Editor = forwardRef<EditorRef, EditorProps>((props, ref) => {
+  const { defaultValue, language, value, onChange, onCmdEnter, onOptionH } =
+    props;
+
+  const editorRef = useRef<editor.IStandaloneCodeEditor>();
+
+  const handleOnMount = (editor: editor.IStandaloneCodeEditor) => {
     editorRef.current = editor;
   };
+
+  useImperativeHandle(ref, () => ({
+    getValue: () => editorRef.current?.getValue(),
+  }));
+
   useEffect(() => {
     if (editorRef.current) {
       addAction(editorRef.current, {
         id: "run-query",
         label: "Run query",
-        keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter],
+        keybindings: [KeyMod.CtrlCmd | KeyCode.Enter],
         run: () => {
-          onCmdEnter?.(editorRef.current?.getValue());
+          onCmdEnter?.(editorRef.current!);
         },
         contextMenuGroupId: "navigation",
         contextMenuOrder: 1.5,
@@ -38,33 +50,27 @@ export default function Editor({
       addAction(editorRef.current, {
         id: "show-help",
         label: "Show help",
-        keybindings: [monaco.KeyMod.Alt | monaco.KeyCode.KeyH],
+        keybindings: [KeyMod.Alt | KeyCode.KeyH],
         run: () => {
           onOptionH?.();
         },
         contextMenuGroupId: "navigation",
         contextMenuOrder: 1.5,
       });
-      addAction(editorRef.current, {
-        id: "add-parameter",
-        label: "Add parameter",
-        keybindings: [monaco.KeyMod.Alt | monaco.KeyCode.KeyP],
-        run: () => {
-          onOptionP?.();
-        },
-        contextMenuGroupId: "navigation",
-        contextMenuOrder: 1.5,
-      });
     }
-  }, [value, onCmdEnter, onOptionH, onOptionP]);
+  }, [onCmdEnter, onOptionH]);
+
+  const handleOnChange = (value?: string) => {
+    onChange?.(value);
+  };
 
   return (
     <MonacoEditor
       height="100%"
       width="100%"
-      defaultValue={value ?? "-- TYPE YOUR SQL HERE"}
-      language="sql"
-      onChange={onChange}
+      defaultValue={value ?? defaultValue}
+      language={language}
+      onChange={handleOnChange}
       onMount={handleOnMount}
       options={{
         minimap: { enabled: false },
@@ -74,4 +80,5 @@ export default function Editor({
       }}
     />
   );
-}
+});
+export default Editor;

@@ -1,14 +1,9 @@
-export type QueryParam = {
-  key: string;
-  value: string;
-};
-
 export type Params = {
   query: string;
   username: string;
   password: string;
   serverAddress: string;
-  params: QueryParam[];
+  jsonParams?: string;
 };
 
 export type StringResult = {
