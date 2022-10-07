@@ -1,10 +1,9 @@
-import { Navbar, NavbarGroup } from "@blueprintjs/core";
-
 export default function Footer() {
   return (
     <div className="flex flex-row justify-end items-center gap-2 px-5 bg-slate-50">
+      <span>{APP_VERSION}</span>
       <a
-        className="px-2 text-gray-500 bg-transparent hover:text-gray-700 hover:bg-yellow-500"
+        className="px-2"
         href="https://raw.githubusercontent.com/antoniovizuete/clickhouser/main/DISCLAIMER.md"
         target="_blank"
         rel="noreferrer"

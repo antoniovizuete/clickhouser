@@ -10,9 +10,13 @@ import "allotment/dist/style.css";
 
 import "./main.css";
 import App from "./components/App";
+import { QueryFormProvider } from "./components/QueryForm";
+import { initialState } from "./components/QueryForm/QueryForm.reducer";
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <QueryFormProvider initialState={initialState}>
+      <App />
+    </QueryFormProvider>
   </React.StrictMode>
 );
