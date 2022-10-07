@@ -39,10 +39,12 @@ Contributions are what make the Open Source community such an amazing place to l
 
 If you have a suggestion that would make this better, please fork the repo and create a Pull Request. You can also [open an issue](http://github.com/antoniovizuete/clickhouser/issues) with the tag `enhancement`.
 
-Don't forget to give the project a star ⭐! Thanks again!
+Don't forget to give the project a star ⭐!
 
 1. Fork the project
 2. Clone the repository
 3. Create your feature branch
 4. Push to your branch
 5. Open a Pull Request
+
+Many thanks!!
