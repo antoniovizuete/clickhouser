@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { QueryResult } from "../lib/peform-query";
 import "../styles/App.css";
+import Footer from "./Footer";
 import QueryForm from "./QueryForm";
 import Result from "./Result";
 
@@ -34,6 +35,9 @@ export default function App() {
       </Allotment.Pane>
       <Allotment.Pane>
         <Result result={result} error={error} loading={loading} />
+      </Allotment.Pane>
+      <Allotment.Pane maxSize={24} minSize={24} className="p-0">
+        <Footer />
       </Allotment.Pane>
     </Allotment>
   );

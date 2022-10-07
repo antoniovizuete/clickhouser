@@ -8,9 +8,7 @@ import {
 } from "@blueprintjs/core";
 import { Popover2 } from "@blueprintjs/popover2";
 import { Allotment } from "allotment";
-import { useHotkeys } from "react-hotkeys-hook";
 
-import { GitHubIcon } from "../svgs/GitHub";
 import Editor from "./components/Editor";
 import ParameterDialog from "./components/ParameterDialog";
 import ParametersMenu from "./components/ParametersMenu";
@@ -78,11 +76,12 @@ export default function QueryForm(props: QueryFormParams) {
     <>
       <Allotment vertical>
         <Allotment.Pane maxSize={48} minSize={48}>
-          <Navbar className="mb-2">
+          <Navbar className="mb-2 bg-slate-50">
             <Navbar.Group align={Alignment.LEFT}>
               <Navbar.Heading className="font-semibold tracking-tight text-[#eca834]">
                 Clickhouser
               </Navbar.Heading>
+              <Button className="mx-1" icon="help" onClick={openHelpDialog} />
               <InputGroup
                 leftIcon="globe-network"
                 value={serverAddress}
@@ -124,7 +123,7 @@ export default function QueryForm(props: QueryFormParams) {
                 placement="bottom-start"
               >
                 <Button icon="variable" intent={Intent.NONE}>
-                  Paramertes{" "}
+                  Parameters{" "}
                   {params.length > 0 ? (
                     <Tag minimal round>
                       {params.length}
@@ -134,15 +133,6 @@ export default function QueryForm(props: QueryFormParams) {
                   )}
                 </Button>
               </Popover2>
-            </Navbar.Group>
-            <Navbar.Group align={Alignment.RIGHT}>
-              <a
-                href="https://github.com/antoniovizuete/clickhouser"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <GitHubIcon />
-              </a>
             </Navbar.Group>
           </Navbar>
         </Allotment.Pane>
