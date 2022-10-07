@@ -1,3 +1,22 @@
+# [1.1.0](https://github.com/antoniovizuete/clickhouser/compare/v1.0.4...v1.1.0) (2022-10-07)
+
+
+### :bug:
+
+* Fix wrong export ([1a77949](https://github.com/antoniovizuete/clickhouser/commit/1a77949778e5d28a86c104876361683b991268bc))
+
+### :fire:
+
+* Remove console.log ([0a2fb43](https://github.com/antoniovizuete/clickhouser/commit/0a2fb43ecffefdfb00af125f5674bc344328bd30))
+
+### :rocket:
+
+* Update footer ([5277a25](https://github.com/antoniovizuete/clickhouser/commit/5277a25aedbe1464db5c9ca07aacd9f3c756e6a8))
+
+### :sparkles:
+
+* Improve param UX ([305fdae](https://github.com/antoniovizuete/clickhouser/commit/305fdaef552a9d8f0e44b9e810bc6b431349be84))
+
 ## [1.0.4](https://github.com/antoniovizuete/clickhouser/compare/v1.0.3...v1.0.4) (2022-10-07)
 
 
