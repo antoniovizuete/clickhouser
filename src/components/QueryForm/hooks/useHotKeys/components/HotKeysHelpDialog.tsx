@@ -19,7 +19,6 @@ const filterCombosByOS = (combo: string) =>
   isMacOsKeystroke(combo) || isNonMacOsKeystroke(combo);
 
 const trasformToSymbol = (key: string) => {
-  console.log("tranformToSymbol#key", key);
   if (!isMacOs()) {
     return key;
   }
