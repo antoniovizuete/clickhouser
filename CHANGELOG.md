@@ -1,3 +1,18 @@
+## [1.0.4](https://github.com/antoniovizuete/clickhouser/compare/v1.0.3...v1.0.4) (2022-10-07)
+
+
+### :bug:
+
+* Fix issue running query ([0b2d1b8](https://github.com/antoniovizuete/clickhouser/commit/0b2d1b8447a4ebce5280a822a70471bb0d56ec75))
+
+### :memo:
+
+* Update documentation [skip ci] ([117f57f](https://github.com/antoniovizuete/clickhouser/commit/117f57f1e7e56f02c8747dd35f3da225be73c8c0))
+
+### :rocket:
+
+* Add footer ([9497391](https://github.com/antoniovizuete/clickhouser/commit/949739122fb8db4891726df561e0c5381aa67ff1))
+
 ## [1.0.3](https://github.com/antoniovizuete/clickhouser/compare/v1.0.2...v1.0.3) (2022-10-06)
 
 
