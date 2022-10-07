@@ -18,7 +18,6 @@ export const useQueryForm = ({
 
   const performQuery = async (params: RunQueryParams) => {
     onPerformQuery?.();
-    await new Promise((resolve) => setTimeout(resolve, 1000));
     const { error, result } = await runQuery(params);
     if (error) {
       onError?.(error);
