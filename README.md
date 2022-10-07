@@ -12,6 +12,26 @@ It aims to provide some features:
 - Interface to give query parameters.
 - Useful UI.
 
+## Disclaimer
+
+The disclaimer document is [DISCLAIMER.md](./DISCLAIMER.md)
+
+## Caveats
+
+Due to Clickhouser being accessible through a secured connection (HTTPS), you can get an error if you try to perform a query against a non-secured server (HTTP). There is a couple of workarounds, but only one depends on you by allowing "Insecure content".
+
+### Allow "Insecure content"
+
+Click on the lock icon in the URL bar, then click "Site settings".
+
+![](https://user-images.githubusercontent.com/1465370/194408254-a966467d-2466-4270-ae36-935a2e64800c.png)
+
+There you will see a list of site permissions. Set "Insecure content".
+
+![](https://user-images.githubusercontent.com/1465370/194408392-771fa206-aecd-4e28-a429-c32c6305a4e3.png)
+
+Now your HTTPS site can access HTTP endpoint.
+
 ## Contributions
 
 ![Alt](https://repobeats.axiom.co/api/embed/acca0c69aad34ac3815c5b44ffbc5420228cdcc3.svg "Repobeats analytics image")
