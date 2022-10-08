@@ -10,7 +10,17 @@ type Params = {
 
 export default function Result({ result, error, loading }: Params) {
   if (error) {
-    return <NonIdealState title="Error" description={error} icon="error" />;
+    return (
+      <div className="overflow-auto h-full flex flex-col gap-5 p-5">
+        <NonIdealState
+          className="w-full h-fit"
+          title="Error"
+          layout={"horizontal"}
+          icon="error"
+        />
+        <div className="font-mono text-red-700">{error}</div>
+      </div>
+    );
   }
 
   if (loading) {
