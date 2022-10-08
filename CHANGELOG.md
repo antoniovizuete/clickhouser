@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/antoniovizuete/clickhouser/compare/v1.1.1...v1.1.2) (2022-10-08)
+
+
+### :rocket:
+
+* Improve errors appearance ([2eaf742](https://github.com/antoniovizuete/clickhouser/commit/2eaf74262827681df005460b107b9b2b3e403731))
+
 ## [1.1.1](https://github.com/antoniovizuete/clickhouser/compare/v1.1.0...v1.1.1) (2022-10-07)
 
 
