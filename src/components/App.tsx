@@ -5,7 +5,7 @@ import { QueryResult } from "../lib/peform-query";
 import "../styles/App.css";
 import Footer from "./Footer";
 import MonacoWrapper from "./MonacoWrapper";
-import QueryForm, { useQueryFormContext } from "./QueryForm";
+import QueryForm from "./QueryForm";
 import { EditorRef } from "./QueryForm/components/Editor";
 import Result from "./Result";
 
@@ -14,7 +14,6 @@ export default function App() {
   const [error, setError] = useState<string | undefined>();
   const [loading, setLoading] = useState(false);
   const paramsEditorRef = useRef<EditorRef>(null);
-  const { state } = useQueryFormContext();
 
   const handleOnSuccess = (result?: QueryResult) => {
     setResult(result);
@@ -29,9 +28,7 @@ export default function App() {
   };
 
   return (
-    <MonacoWrapper
-      jsonParams={paramsEditorRef.current?.getValue() || state.jsonParams}
-    >
+    <MonacoWrapper jsonParams={paramsEditorRef.current?.getValue()}>
       <Allotment vertical>
         <Allotment.Pane minSize={100}>
           <QueryForm

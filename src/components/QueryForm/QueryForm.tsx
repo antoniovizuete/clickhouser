@@ -1,10 +1,10 @@
 import { Alignment, Button, InputGroup, Navbar } from "@blueprintjs/core";
 import { Allotment } from "allotment";
+import { useRef } from "react";
 import { QueryResult } from "../../lib/peform-query";
 
 import Editor, { EditorRef } from "./components/Editor";
 import { useQueryForm } from "./hooks/useQueryForm";
-import { Actions } from "./QueryForm.reducer";
 
 export type QueryFormProps = {
   onPerformQuery: () => void;
@@ -15,14 +15,31 @@ export type QueryFormProps = {
 
 export default function QueryForm(props: QueryFormProps) {
   const { paramsEditorRef } = props;
+  const runQueryButtonRef = useRef<Button>(null);
+
   const {
-    state: { query, password, serverAddress, username, jsonParams },
-    dispatch,
+    urlState: { query, serverAddress, username, jsonParams },
+    setUrlState,
+    password,
+    setPassword,
     performQuery,
-    queryEditorRef,
     openHelpDialog,
     HotKeysHelpDialog,
   } = useQueryForm(props);
+
+  const runQuery = () => {
+    performQuery();
+    /*setUrlState({
+      query,
+      serverAddress,
+      username,
+      jsonParams,
+    });*/
+  };
+
+  const clickOnRunQueryButton = () => {
+    runQueryButtonRef.current?.buttonRef?.click();
+  };
 
   return (
     <>
@@ -37,12 +54,7 @@ export default function QueryForm(props: QueryFormProps) {
                 leftIcon="globe-network"
                 value={serverAddress}
                 placeholder="Server address"
-                onChange={(e) =>
-                  dispatch({
-                    type: Actions.SetServerAddress,
-                    payload: e.target.value,
-                  })
-                }
+                onChange={(e) => setUrlState({ serverAddress: e.target.value })}
                 className="flex-grow"
                 size={40}
               />
@@ -50,31 +62,22 @@ export default function QueryForm(props: QueryFormProps) {
                 leftIcon="user"
                 placeholder="Username"
                 value={username}
-                onChange={(e) =>
-                  dispatch({
-                    type: Actions.SetUsername,
-                    payload: e.target.value,
-                  })
-                }
+                onChange={(e) => setUrlState({ username: e.target.value })}
               />
               <InputGroup
                 leftIcon="lock"
                 placeholder="Password"
                 type="password"
                 value={password}
-                onChange={(e) =>
-                  dispatch({
-                    type: Actions.SetPassword,
-                    payload: e.target.value,
-                  })
-                }
+                onChange={(e) => setPassword(e.target.value)}
               />
               <Button
+                ref={runQueryButtonRef}
                 className="mx-1"
                 icon="play"
                 intent="warning"
                 aria-label="Run query"
-                onClick={() => performQuery({ query, jsonParams })}
+                onClick={runQuery}
                 disabled={!query}
               />
               <Button icon="help" onClick={openHelpDialog} />
@@ -86,19 +89,10 @@ export default function QueryForm(props: QueryFormProps) {
             <Allotment.Pane>
               <div className="py-1 px-3 text-xs">Query</div>
               <Editor
-                ref={queryEditorRef}
                 language="sql"
-                defaultValue={"-- TYPE YOUR SQL HERE"}
                 value={query}
-                onChange={(query) => {
-                  dispatch({ type: Actions.SetQuery, payload: query });
-                }}
-                onCmdEnter={(editor) => {
-                  performQuery({
-                    query: editor.getValue(),
-                    jsonParams: paramsEditorRef.current?.getValue(),
-                  });
-                }}
+                onChange={(query) => setUrlState({ query })}
+                onCmdEnter={clickOnRunQueryButton}
                 onOptionH={openHelpDialog}
               />
             </Allotment.Pane>
@@ -108,15 +102,8 @@ export default function QueryForm(props: QueryFormProps) {
                 ref={paramsEditorRef}
                 language="json"
                 value={jsonParams}
-                onChange={(jsonParams) =>
-                  dispatch({ type: Actions.SetJsonParams, payload: jsonParams })
-                }
-                onCmdEnter={(editor) => {
-                  performQuery({
-                    jsonParams: editor.getValue(),
-                    query: queryEditorRef.current?.getValue(),
-                  });
-                }}
+                onChange={(jsonParams) => setUrlState({ jsonParams })}
+                onCmdEnter={clickOnRunQueryButton}
                 onOptionH={openHelpDialog}
               />
             </Allotment.Pane>

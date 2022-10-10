@@ -1,11 +1,11 @@
-import { useCallback } from "react";
 import { performQuery, QueryResult } from "../../../lib/peform-query";
-import { useQueryFormContext } from "../QueryForm.context";
-import { Actions } from "../QueryForm.reducer";
 
 export type RunQueryParams = {
   query?: string;
   jsonParams?: string;
+  serverAddress?: string;
+  username?: string;
+  password?: string;
 };
 
 type ReturnType = {
@@ -15,43 +15,50 @@ type ReturnType = {
 };
 
 export const useRunQuery = () => {
-  const { state, dispatch } = useQueryFormContext();
+  const runQuery = async ({
+    serverAddress,
+    username = "default",
+    password = "",
+    query,
+    jsonParams,
+  }: RunQueryParams): Promise<ReturnType> => {
+    if (!query) {
+      return {
+        error: "Query is empty",
+        loading: false,
+        result: undefined,
+      };
+    }
 
-  const runQuery = useCallback(
-    async ({ query, jsonParams }: RunQueryParams): Promise<ReturnType> => {
-      const { serverAddress, username, password } = state;
+    if (!serverAddress) {
+      return {
+        error: "Server address is empty",
+        loading: false,
+        result: undefined,
+      };
+    }
 
-      if (!query) {
-        return {
-          error: "Query is empty",
-          loading: false,
-          result: undefined,
-        };
-      }
-
-      try {
-        const result = await performQuery({
-          query,
-          serverAddress,
-          username,
-          password,
-          jsonParams,
-        });
-        return {
-          error: undefined,
-          loading: false,
-          result,
-        };
-      } catch (e) {
-        return {
-          error: e as string,
-          loading: false,
-          result: undefined,
-        };
-      }
-    },
-    [state, dispatch]
-  );
+    try {
+      const result = await performQuery({
+        query,
+        serverAddress,
+        username,
+        password,
+        jsonParams,
+      });
+      return {
+        error: undefined,
+        loading: false,
+        result,
+      };
+    } catch (e) {
+      return {
+        error: e as string,
+        loading: false,
+        result: undefined,
+      };
+    }
+  };
 
   return { runQuery };
 };
