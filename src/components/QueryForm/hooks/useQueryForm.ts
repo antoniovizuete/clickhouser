@@ -33,7 +33,7 @@ export const useQueryForm = ({
       description: "Run query",
       callback: () =>
         performQuery({ query: state.query, jsonParams: state.jsonParams }),
-      deps: [performQuery],
+      deps: [performQuery, state.query, state.jsonParams],
     },
     {
       combo: "alt+h, option+h",

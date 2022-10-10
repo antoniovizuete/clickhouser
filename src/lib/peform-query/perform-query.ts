@@ -16,6 +16,16 @@ export function performQuery({
   jsonParams = "{}",
 }: Params): Promise<QueryResult> {
   return new Promise((resolve, reject) => {
+    const userParams: string[] = [];
+    try {
+      userParams.push(
+        ...Object.entries(JSON.parse(jsonParams || "{}")).map(
+          ([key, value]) => `param_${key}=${encodeURIComponent(String(value))}`
+        )
+      );
+    } catch (error) {
+      return reject("Invalid JSON params");
+    }
     const queryParams = [
       "add_http_cors_header=1",
       `user=${encodeURIComponent(username)}`,
@@ -24,9 +34,7 @@ export function performQuery({
       "max_result_rows=1000",
       "max_result_bytes=10000000",
       "result_overflow_mode=break",
-      ...Object.entries(JSON.parse(jsonParams)).map(
-        ([key, value]) => `param_${key}=${encodeURIComponent(String(value))}`
-      ),
+      ...userParams,
     ].join("&");
 
     const url = [serverAddress, queryParams].join(
@@ -40,12 +48,26 @@ export function performQuery({
       if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {
           resolve(parseResponse(this.responseText));
+        } else if (this.status === 401) {
+          reject("Unauthorized");
+        } else if (this.status === 403) {
+          reject("Forbidden");
+        } else if (this.status === 0) {
+          reject("Connection error");
         } else {
           reject(this.responseText);
         }
       }
     };
 
-    xhr.send(query);
+    xhr.onerror = function () {
+      reject("Network error");
+    };
+
+    try {
+      xhr.send(query);
+    } catch (e) {
+      reject((e as Error).message);
+    }
   });
 }

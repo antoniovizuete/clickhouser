@@ -6,7 +6,6 @@ import {
 } from "monaco-editor/esm/vs/editor/editor.api";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { addAction } from "../../../lib/editor-helpers/add-action.editor.helper";
-import { QueryFormContextType } from "../QueryForm.context";
 
 type EditorProps = {
   defaultValue?: string;

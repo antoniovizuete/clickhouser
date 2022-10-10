@@ -11,7 +11,7 @@ type Params = {
 export default function Result({ result, error, loading }: Params) {
   if (error) {
     return (
-      <div className="overflow-auto h-full flex flex-col gap-5 p-5">
+      <div className="overflow-auto h-full flex flex-col gap-5 p-5 justify-start items-center">
         <NonIdealState
           className="w-full h-fit"
           title="Error"

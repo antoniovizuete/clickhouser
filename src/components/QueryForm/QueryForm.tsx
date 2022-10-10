@@ -2,7 +2,7 @@ import { Alignment, Button, InputGroup, Navbar } from "@blueprintjs/core";
 import { Allotment } from "allotment";
 import { QueryResult } from "../../lib/peform-query";
 
-import Editor from "./components/Editor";
+import Editor, { EditorRef } from "./components/Editor";
 import { useQueryForm } from "./hooks/useQueryForm";
 import { Actions } from "./QueryForm.reducer";
 
@@ -10,15 +10,16 @@ export type QueryFormProps = {
   onPerformQuery: () => void;
   onSuccess: (result?: QueryResult) => void;
   onError: (error?: string) => void;
+  paramsEditorRef: React.RefObject<EditorRef>;
 };
 
 export default function QueryForm(props: QueryFormProps) {
+  const { paramsEditorRef } = props;
   const {
     state: { query, password, serverAddress, username, jsonParams },
     dispatch,
     performQuery,
     queryEditorRef,
-    paramsEditorRef,
     openHelpDialog,
     HotKeysHelpDialog,
   } = useQueryForm(props);
