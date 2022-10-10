@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/antoniovizuete/clickhouser/compare/v1.2.0...v1.3.0) (2022-10-10)
+
+
+### :sparkles:
+
+* Add URL state management ([491c47f](https://github.com/antoniovizuete/clickhouser/commit/491c47fe47beb11b66094fdf8fe134b4e4df2fdb))
+
 # [1.2.0](https://github.com/antoniovizuete/clickhouser/compare/v1.1.2...v1.2.0) (2022-10-10)
 
 
