@@ -1,3 +1,14 @@
+# [1.2.0](https://github.com/antoniovizuete/clickhouser/compare/v1.1.2...v1.2.0) (2022-10-10)
+
+
+### :rocket:
+
+* Improve the error handling ([f3744a1](https://github.com/antoniovizuete/clickhouser/commit/f3744a121ab881fe408e44a9e53d6bfc681c5a08))
+
+### :sparkles:
+
+* Add params and types autocompletion to SQL editor ([57cebe0](https://github.com/antoniovizuete/clickhouser/commit/57cebe0e94c2f8fbe6b108032e399c83605d85fb))
+
 ## [1.1.2](https://github.com/antoniovizuete/clickhouser/compare/v1.1.1...v1.1.2) (2022-10-08)
 
 
