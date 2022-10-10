@@ -50,8 +50,8 @@ const HotKeysHelpDialog = forwardRef<HotKeysHelpDialogRef, Props>(
         .split(",")
         .filter(Boolean)
         .filter(filterCombosByOS)
-        .flatMap((combo) => (
-          <div className="mx-2 my-1 gap-1 flex flex-row justify-end">
+        .flatMap((combo, i) => (
+          <div key={i} className="mx-2 my-1 gap-1 flex flex-row justify-end">
             {mapComboToTags(combo.trim())}
           </div>
         ));
