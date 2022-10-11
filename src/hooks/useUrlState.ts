@@ -1,25 +1,30 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useNavigation, useSearchParams } from "react-router-dom";
 
+const serialize = <T>(state: T): string => btoa(JSON.stringify(state));
+const deserialize = <T>(state: string, defaultState: T): T => {
+  try {
+    return JSON.parse(atob(state)) as T;
+  } catch (e) {
+    return defaultState;
+  }
+};
+
 export function useUrlState<T>(params: {
   initialState: T;
   paramName?: string;
 }): [T, (state: Partial<T>) => void] {
-  const serialize = (state: T) => btoa(JSON.stringify(state));
-  const deserialize = (state: string) => JSON.parse(atob(state)) as T;
-
   const { initialState, paramName = "q" } = params;
   const [search, setSearch] = useSearchParams();
 
   const existingValue = search.get(paramName);
   const [state, setInternalState] = useState<T>(
-    existingValue ? deserialize(existingValue) : initialState
+    existingValue ? deserialize(existingValue, initialState) : initialState
   );
 
   useEffect(() => {
-    // Updates state when user navigates backwards or forwards in browser history
-    if (existingValue && deserialize(existingValue) !== state) {
-      setInternalState(deserialize(existingValue));
+    if (existingValue && deserialize(existingValue, initialState) !== state) {
+      setInternalState(deserialize(existingValue, initialState));
     }
   }, [existingValue]);
 
