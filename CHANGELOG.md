@@ -1,3 +1,18 @@
+## [1.3.1](https://github.com/antoniovizuete/clickhouser/compare/v1.3.0...v1.3.1) (2022-10-11)
+
+
+### :art:
+
+* Refactor codebase directories structure ([3426ddb](https://github.com/antoniovizuete/clickhouser/commit/3426ddbd6feb08d005b4275e1edb55bfcd06ac32))
+
+### :fire:
+
+* Remove unused styles ([195d9d0](https://github.com/antoniovizuete/clickhouser/commit/195d9d05a71e8f7c81dd53b7d5aec5fbf4059a2f))
+
+### :rocket:
+
+* Avoid black out when the q param is malformed ([e152c2d](https://github.com/antoniovizuete/clickhouser/commit/e152c2df297f006582b1a7b656d29ff8d3bd4b27))
+
 # [1.3.0](https://github.com/antoniovizuete/clickhouser/compare/v1.2.0...v1.3.0) (2022-10-10)
 
 
