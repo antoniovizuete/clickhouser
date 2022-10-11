@@ -5,7 +5,7 @@ import {
   KeyMod,
 } from "monaco-editor/esm/vs/editor/editor.api";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
-import { addAction } from "../../../lib/editor-helpers/add-action.editor.helper";
+import { addAction } from "../lib/editor-helpers/add-action.editor.helper";
 
 type EditorProps = {
   defaultValue?: string;

@@ -6,7 +6,7 @@ import "../styles/App.css";
 import Footer from "./Footer";
 import MonacoWrapper from "./MonacoWrapper";
 import QueryForm from "./QueryForm";
-import { EditorRef } from "./QueryForm/components/Editor";
+import { EditorRef } from "./Editor";
 import Result from "./Result";
 
 export default function App() {

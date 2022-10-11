@@ -1,5 +1,10 @@
 import { Params, QueryResult } from "./types";
 
+type ReturnType = {
+  error?: string;
+  result?: QueryResult;
+};
+
 const parseResponse = (response: string): QueryResult => {
   try {
     return JSON.parse(response);
@@ -8,14 +13,26 @@ const parseResponse = (response: string): QueryResult => {
   }
 };
 
-export function performQuery({
+export async function performQuery({
   query,
   username,
   password,
   serverAddress,
   jsonParams = "{}",
-}: Params): Promise<QueryResult> {
-  return new Promise((resolve, reject) => {
+}: Params): Promise<ReturnType> {
+  if (!query) {
+    return {
+      error: "Query is empty",
+    };
+  }
+
+  if (!serverAddress) {
+    return {
+      error: "Server address is empty",
+    };
+  }
+
+  const promise = new Promise<QueryResult>((resolve, reject) => {
     const userParams: string[] = [];
     try {
       userParams.push(
@@ -70,4 +87,17 @@ export function performQuery({
       reject((e as Error).message);
     }
   });
+
+  try {
+    const response = await promise;
+    return {
+      error: undefined,
+      result: response,
+    };
+  } catch (e) {
+    return {
+      error: e as string,
+      result: undefined,
+    };
+  }
 }

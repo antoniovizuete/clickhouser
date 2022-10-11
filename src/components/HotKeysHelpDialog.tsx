@@ -1,6 +1,6 @@
 import { Classes, Dialog, Tag } from "@blueprintjs/core";
 import { forwardRef, useImperativeHandle, useState } from "react";
-import { HotKey } from "../types";
+import { HotKey } from "../hooks/useHotKeys/types";
 
 type Props = {
   hotKeys: HotKey[];

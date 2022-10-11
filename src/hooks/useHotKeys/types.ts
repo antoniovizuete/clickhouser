@@ -1,4 +1,4 @@
-import { XOR } from "../../../../types";
+import { XOR } from "../../types";
 
 type HelpHotKey = {
   help: true;

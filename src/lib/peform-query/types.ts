@@ -1,5 +1,5 @@
 export type Params = {
-  query: string;
+  query?: string;
   username: string;
   password: string;
   serverAddress: string;

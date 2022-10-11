@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import HotKeysHelpDialog, {
   HotKeysHelpDialogRef,
-} from "./components/HotKeysHelpDialog";
+} from "../../components/HotKeysHelpDialog";
 import { HotKey } from "./types";
 
 type ReturnType = [JSX.Element, () => void];
