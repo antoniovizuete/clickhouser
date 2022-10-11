@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
-import { useUrlState } from "../../../hooks/useUrlState";
-import { QueryFormProps } from "../QueryForm";
+import { useUrlState } from "./useUrlState";
+import { performQuery } from "../lib/peform-query";
+import { QueryFormProps } from "../components/QueryForm";
 import { useHotKeys } from "./useHotKeys";
-import { useRunQuery } from "./useRunQuery";
 
 export type UrlState = {
   query?: string;
@@ -23,30 +23,29 @@ export const useQueryForm = ({
   onError,
   onPerformQuery,
 }: QueryFormProps) => {
-  const { runQuery } = useRunQuery();
   const [urlState, setUrlState] = useUrlState<UrlState>({
     initialState,
   });
 
   const [password, setPassword] = useState("");
 
-  const performQuery = useCallback(async () => {
+  const runQuery = useCallback(async () => {
     onPerformQuery?.();
-    const { error, result } = await runQuery({ ...urlState, password });
+    const { error, result } = await performQuery({ ...urlState, password });
     if (error) {
       onError?.(error);
     }
     if (result) {
       onSuccess?.(result);
     }
-  }, [onError, onSuccess, onPerformQuery, password, runQuery, urlState]);
+  }, [onError, onSuccess, onPerformQuery, password, performQuery, urlState]);
 
   const [HotKeysHelpDialog, openHelpDialog] = useHotKeys([
     {
       combo: "cmd+enter",
       description: "Run query",
-      callback: () => performQuery(),
-      deps: [performQuery, urlState, password],
+      callback: () => runQuery(),
+      deps: [runQuery, urlState, password],
     },
     {
       combo: "alt+h, option+h",
@@ -58,7 +57,7 @@ export const useQueryForm = ({
   return {
     HotKeysHelpDialog,
     openHelpDialog,
-    performQuery,
+    runQuery,
     setUrlState,
     urlState,
     password,

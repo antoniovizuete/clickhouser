@@ -1,4 +1,4 @@
-import { JsonResult } from "../../lib/peform-query";
+import { JsonResult } from "../lib/peform-query";
 import { Table2, Column, Cell, SelectionModes } from "@blueprintjs/table";
 
 type Params = {
