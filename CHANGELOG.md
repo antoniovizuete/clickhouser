@@ -1,3 +1,10 @@
+## [1.3.9](https://github.com/antoniovizuete/clickhouser/compare/v1.3.8...v1.3.9) (2022-10-21)
+
+
+### :rocket:
+
+* Add notice to CopyUrlPopover ([6aac5a2](https://github.com/antoniovizuete/clickhouser/commit/6aac5a28aaf31f1e623b37562675ff3a8d03dd4a))
+
 ## [1.3.8](https://github.com/antoniovizuete/clickhouser/compare/v1.3.7...v1.3.8) (2022-10-21)
 
 
