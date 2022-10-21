@@ -1,3 +1,10 @@
+## [1.3.10](https://github.com/antoniovizuete/clickhouser/compare/v1.3.9...v1.3.10) (2022-10-21)
+
+
+### :bug:
+
+* Fix column width when length value is low ([bcd1fa7](https://github.com/antoniovizuete/clickhouser/commit/bcd1fa7af251ac5dc3c9989f7200326085584718))
+
 ## [1.3.9](https://github.com/antoniovizuete/clickhouser/compare/v1.3.8...v1.3.9) (2022-10-21)
 
 
