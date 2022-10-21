@@ -41,7 +41,7 @@ export default function App() {
           <Result result={result} error={error} loading={loading} />
         </Allotment.Pane>
         <Allotment.Pane maxSize={24} minSize={24} className="p-0">
-          <Footer />
+          <Footer result={result} />
         </Allotment.Pane>
       </Allotment>
     </MonacoWrapper>

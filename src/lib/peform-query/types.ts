@@ -19,11 +19,13 @@ export type JsonResult = {
   }[];
   rows: number;
   rows_before_limit_at_least: number;
-  statistics: {
-    elapsed: number;
-    rows_read: number;
-    bytes_read: number;
-  };
+  statistics: Statistics;
+};
+
+export type Statistics = {
+  elapsed: number;
+  rows_read: number;
+  bytes_read: number;
 };
 
 export type QueryResult = StringResult | JsonResult;

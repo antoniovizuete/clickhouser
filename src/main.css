@@ -15,3 +15,8 @@ body,
 .bp4-input {
   height: 31px;
 }
+
+.stat {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
