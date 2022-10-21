@@ -9,7 +9,9 @@ export default function Footer({ result }: Props) {
   return (
     <div className="flex flex-row justify-between items-center pl-1 pr-5 py-0.5 bg-slate-50">
       {result && isJsonResult(result) ? (
-        <StatisticsFooter statistics={result.statistics} />
+        <StatisticsFooter
+          statistics={{ ...result.statistics, rows: result.data.length }}
+        />
       ) : (
         <div></div>
       )}
