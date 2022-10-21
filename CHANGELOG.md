@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/antoniovizuete/clickhouser/compare/v1.3.1...v1.3.2) (2022-10-21)
+
+
+### :rocket:
+
+* Improve table ([65540cb](https://github.com/antoniovizuete/clickhouser/commit/65540cb5df0d42f910cf5dd593a5ce99dc52b958))
+
 ## [1.3.1](https://github.com/antoniovizuete/clickhouser/compare/v1.3.0...v1.3.1) (2022-10-11)
 
 
