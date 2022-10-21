@@ -1,3 +1,10 @@
+## [1.3.8](https://github.com/antoniovizuete/clickhouser/compare/v1.3.7...v1.3.8) (2022-10-21)
+
+
+### :rocket:
+
+* Improve URL access ([99405f0](https://github.com/antoniovizuete/clickhouser/commit/99405f08c686d84f5e6639edefd9a3b4ed646fba))
+
 ## [1.3.7](https://github.com/antoniovizuete/clickhouser/compare/v1.3.6...v1.3.7) (2022-10-21)
 
 
