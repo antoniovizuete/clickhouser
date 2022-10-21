@@ -65,6 +65,7 @@ const Editor = forwardRef<EditorRef, EditorProps>((props, ref) => {
 
   return (
     <MonacoEditor
+      className="mb-6"
       height="100%"
       width="100%"
       defaultValue={value ?? defaultValue}
