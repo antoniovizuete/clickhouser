@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/antoniovizuete/clickhouser/compare/v1.3.2...v1.3.3) (2022-10-21)
+
+
+### :rocket:
+
+* Add statistics to footer bar ([f1fa9a0](https://github.com/antoniovizuete/clickhouser/commit/f1fa9a0a240b9d0c46084ceec5cbe1bf45f8e25c))
+
 ## [1.3.2](https://github.com/antoniovizuete/clickhouser/compare/v1.3.1...v1.3.2) (2022-10-21)
 
 
