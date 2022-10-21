@@ -1,15 +1,8 @@
 import { useCallback, useState } from "react";
-import { useUrlState } from "./useUrlState";
+import { UrlState, useUrlState } from "./useUrlState";
 import { performQuery } from "../lib/peform-query";
 import { QueryFormProps } from "../components/QueryForm";
 import { useHotKeys } from "./useHotKeys";
-
-export type UrlState = {
-  query?: string;
-  serverAddress: string;
-  username: string;
-  jsonParams?: string;
-};
 
 export const initialState: UrlState = {
   query: "SELECT 1",
@@ -23,7 +16,7 @@ export const useQueryForm = ({
   onError,
   onPerformQuery,
 }: QueryFormProps) => {
-  const [urlState, setUrlState] = useUrlState<UrlState>({
+  const [urlState, setUrlState] = useUrlState({
     initialState,
   });
 
