@@ -16,8 +16,8 @@ export default function TableResult({ result }: Params) {
         Math.max(
           Math.min(
             Math.floor(
-              [...(cell || "").toString()]
-                .map<number>((l) => (l.match(/[a-zA-Z0-9]/) ? 1.1 : 1))
+              [...(String(cell) || "")]
+                .map<number>((l) => (l.match(/[a-zA-Z0-9]/) ? 1.5 : 1))
                 .reduce((a, c) => a + c, 0)
             ),
             50

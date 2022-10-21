@@ -13,6 +13,41 @@ const parseResponse = (response: string): QueryResult => {
   }
 };
 
+const transformBool = (value: boolean): string => (value ? "true" : "false");
+
+const serializeParamValue = (value: unknown) => {
+  if (Array.isArray(value)) {
+    if (value.length === 0) {
+      return "[]";
+    }
+
+    const [first] = value;
+
+    if (typeof first === "string") {
+      return `['${value.join("','")}']`;
+    }
+
+    if (typeof first === "number") {
+      return `[${value.join(",")}]`;
+    }
+
+    if (typeof first === "boolean") {
+      return `[${value.map(transformBool).join(",")}]`;
+    }
+
+    throw new Error(`Unsupported array type: ${typeof first}`);
+  }
+
+  if (typeof value === "string" || typeof value === "number") {
+    return value;
+  }
+  if (typeof value === "boolean") {
+    return transformBool(value);
+  }
+
+  throw new Error(`Unsupported type: ${typeof value}`);
+};
+
 export async function performQuery({
   query,
   username,
@@ -37,7 +72,11 @@ export async function performQuery({
     try {
       userParams.push(
         ...Object.entries(JSON.parse(jsonParams || "{}")).map(
-          ([key, value]) => `param_${key}=${encodeURIComponent(String(value))}`
+          ([key, value]) => {
+            return `param_${key}=${encodeURIComponent(
+              serializeParamValue(value)
+            )}`;
+          }
         )
       );
     } catch (error) {
