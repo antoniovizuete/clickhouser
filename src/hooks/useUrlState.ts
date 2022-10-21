@@ -1,24 +1,67 @@
+import { decode, encode } from "js-base64";
 import { useEffect, useState } from "react";
-import { useNavigate, useNavigation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
-const serialize = <T>(state: T): string => btoa(JSON.stringify(state));
-const deserialize = <T>(state: string, defaultState: T): T => {
-  try {
-    return JSON.parse(atob(state)) as T;
-  } catch (e) {
-    return defaultState;
-  }
+export type UrlState = {
+  jsonParams?: string;
+  query?: string;
+  serverAddress: string;
+  username: string;
 };
 
-export function useUrlState<T>(params: {
-  initialState: T;
+const SEPARATOR = ".";
+
+export default function debounce(
+  func: (args: unknown[]) => void,
+  msWait: number
+) {
+  let timeout: NodeJS.Timeout;
+  return function (...args: unknown[]) {
+    // @ts-ignore
+    const context = this as unknown;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, [args]), msWait);
+  };
+}
+
+const serialize = ({
+  serverAddress,
+  username,
+  jsonParams,
+  query,
+}: UrlState): string =>
+  [
+    encode(jsonParams ?? ""),
+    encode(query ?? ""),
+    encode(serverAddress),
+    encode(username),
+  ].join(SEPARATOR);
+
+const deserialize = (
+  encodedState: string,
+  defaultState: UrlState
+): UrlState => {
+  const [jsonParams, query, serverAddress, username] = encodedState
+    .split(SEPARATOR)
+    .map(decode);
+
+  return {
+    jsonParams: jsonParams ?? defaultState.jsonParams,
+    query: query ?? defaultState.query,
+    serverAddress: serverAddress ?? defaultState.serverAddress,
+    username: username ?? defaultState.username,
+  };
+};
+
+export function useUrlState(params: {
+  initialState: UrlState;
   paramName?: string;
-}): [T, (state: Partial<T>) => void] {
+}): [UrlState, (state: Partial<UrlState>) => void] {
   const { initialState, paramName = "q" } = params;
   const [search, setSearch] = useSearchParams();
 
   const existingValue = search.get(paramName);
-  const [state, setInternalState] = useState<T>(
+  const [state, setInternalState] = useState<UrlState>(
     existingValue ? deserialize(existingValue, initialState) : initialState
   );
 
@@ -28,7 +71,7 @@ export function useUrlState<T>(params: {
     }
   }, [existingValue]);
 
-  const setState = (s: Partial<T>) => {
+  const setState = (s: Partial<UrlState>) => {
     setInternalState((prev) => {
       const newState = { ...prev, ...s };
       const searchParams = new URLSearchParams();

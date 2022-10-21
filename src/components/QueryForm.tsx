@@ -5,6 +5,8 @@ import { QueryResult } from "../lib/peform-query";
 
 import Editor, { EditorRef } from "./Editor";
 import { useQueryForm } from "../hooks/useQueryForm";
+import { Popover2 } from "@blueprintjs/popover2";
+import CopyUrlPopover from "./CopyUrlPopover";
 
 export type QueryFormProps = {
   onPerformQuery: () => void;
@@ -61,16 +63,20 @@ export default function QueryForm(props: QueryFormProps) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Button
-                ref={runQueryButtonRef}
-                className="mx-1"
-                icon="play"
-                intent="warning"
-                aria-label="Run query"
-                onClick={runQuery}
-                disabled={!query}
-              />
-              <Button icon="help" onClick={openHelpDialog} />
+              <div className="flex flex-row justify-start items-center ml-1 gap-1">
+                <Button
+                  ref={runQueryButtonRef}
+                  icon="play"
+                  intent="warning"
+                  aria-label="Run query"
+                  onClick={runQuery}
+                  disabled={!query}
+                />
+                <Button icon="help" onClick={openHelpDialog} />
+                <Popover2 content={<CopyUrlPopover />} placement="bottom">
+                  <Button icon="social-media" />
+                </Popover2>
+              </div>
             </Navbar.Group>
           </Navbar>
         </Allotment.Pane>
