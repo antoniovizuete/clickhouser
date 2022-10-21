@@ -1,3 +1,15 @@
+## [1.3.5](https://github.com/antoniovizuete/clickhouser/compare/v1.3.4...v1.3.5) (2022-10-21)
+
+
+### :bug:
+
+* Serialize properly the params ([e29aeaa](https://github.com/antoniovizuete/clickhouser/commit/e29aeaae39fc6f1ec6a7dc7e4184f92445780e41))
+
+### :rocket:
+
+* Add effective rows to stats ([e2bdddb](https://github.com/antoniovizuete/clickhouser/commit/e2bdddb9bc31057096133b9f862444c4afeb7032))
+* Add some space to column width ([bdb4bfa](https://github.com/antoniovizuete/clickhouser/commit/bdb4bfa0f4215800f6c924d08ab16e5cc394fc0c))
+
 ## [1.3.4](https://github.com/antoniovizuete/clickhouser/compare/v1.3.3...v1.3.4) (2022-10-21)
 
 
