@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/antoniovizuete/clickhouser/compare/v1.3.3...v1.3.4) (2022-10-21)
+
+
+### :bug:
+
+* Fix wrong placement of right footer when no results available ([f92c284](https://github.com/antoniovizuete/clickhouser/commit/f92c28430cb3e8c66774acb3e1e994606fc0635d))
+
 ## [1.3.3](https://github.com/antoniovizuete/clickhouser/compare/v1.3.2...v1.3.3) (2022-10-21)
 
 
