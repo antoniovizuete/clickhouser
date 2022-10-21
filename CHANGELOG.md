@@ -1,3 +1,10 @@
+## [1.3.7](https://github.com/antoniovizuete/clickhouser/compare/v1.3.6...v1.3.7) (2022-10-21)
+
+
+### :bug:
+
+* Fix broken last line on the editor ([71d65fe](https://github.com/antoniovizuete/clickhouser/commit/71d65fe8bbde3bd9ce0533bc4e124dffda6e7b04))
+
 ## [1.3.6](https://github.com/antoniovizuete/clickhouser/compare/v1.3.5...v1.3.6) (2022-10-21)
 
 
