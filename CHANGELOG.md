@@ -1,3 +1,14 @@
+## [1.3.6](https://github.com/antoniovizuete/clickhouser/compare/v1.3.5...v1.3.6) (2022-10-21)
+
+
+### :bug:
+
+* Fix black out when no data is returned ([eb46899](https://github.com/antoniovizuete/clickhouser/commit/eb46899e1c3a40c99223b442c9cae1560a8fbc9f))
+
+### :recycle:
+
+* Remove console.log ([b32cd67](https://github.com/antoniovizuete/clickhouser/commit/b32cd67989eb818b9409f5829d090236628f0d96))
+
 ## [1.3.5](https://github.com/antoniovizuete/clickhouser/compare/v1.3.4...v1.3.5) (2022-10-21)
 
 
