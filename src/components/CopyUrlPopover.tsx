@@ -11,7 +11,13 @@ export default function CopyUrlPopover() {
   };
 
   return (
-    <div className="w-[30vw] p-5 flex flex-col justify-start items-end gap-2">
+    <div className="w-[30vw] p-5 flex flex-col gap-4">
+      <h2 className="text-lg">Share your query</h2>
+      <h6 className="text-xs text-gray-500">
+        We don't store or serialize the password, so{" "}
+        <span className="font-bold">never</span> will be shared or persisted.
+      </h6>
+
       <div className="w-full">
         <InputGroup
           style={{ cursor: "pointer" }}
@@ -23,7 +29,7 @@ export default function CopyUrlPopover() {
       </div>
       <div className="w-full flex flex-row justify-between items-center">
         {showCopied ? (
-          <div className="text-green-500 ">Copied!</div>
+          <div className="text-green-600 ">Copied!</div>
         ) : (
           <div></div>
         )}
