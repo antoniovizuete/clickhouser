@@ -8,8 +8,10 @@ type Props = {
 export default function Footer({ result }: Props) {
   return (
     <div className="flex flex-row justify-between items-center pl-1 pr-5 py-0.5 bg-slate-50">
-      {result && isJsonResult(result) && (
+      {result && isJsonResult(result) ? (
         <StatisticsFooter statistics={result.statistics} />
+      ) : (
+        <div></div>
       )}
 
       <div className="flex flex-row justify-end items-center gap-2 divide-x divide-gray-300 border-l border-l-gray-300">
