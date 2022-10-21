@@ -69,7 +69,6 @@ export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
       );
     }
     return () => {
-      console.log("disposing");
       setAreSameParamKeys(false);
       subs.forEach((sub) => sub.dispose());
     };

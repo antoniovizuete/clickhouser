@@ -41,5 +41,9 @@ export default function Result({ result, error, loading }: Params) {
     return <pre>{result.value}</pre>;
   }
 
+  if (result.data.length === 0) {
+    return <NonIdealState title="No results" icon="high-priority" />;
+  }
+
   return <TableResult result={result} />;
 }
