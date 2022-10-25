@@ -13,16 +13,19 @@ export default function TableResult({ result }: Params) {
   )
     .map((i) =>
       result.data[i].map((cell, colIndex) =>
-        Math.max(
+        Math.min(
+          400,
           Math.max(
-            Math.floor(
-              [...(String(cell) || "")]
-                .map<number>((l) => (l.match(/[a-zA-Z0-9]/) ? 1.5 : 1))
-                .reduce((a, c) => a + c, 0)
-            ),
-            10
-          ) * 8,
-          result.meta[colIndex].name.length * 10
+            Math.max(
+              Math.floor(
+                [...(String(cell) || "")]
+                  .map<number>((l) => (l.match(/[a-zA-Z0-9]/) ? 1.5 : 1))
+                  .reduce((a, c) => a + c, 0)
+              ),
+              10
+            ) * 8,
+            result.meta[colIndex].name.length * 10
+          )
         )
       )
     )
