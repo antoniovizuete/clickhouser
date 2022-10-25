@@ -14,7 +14,7 @@ export default function CopyUrlPopover() {
     <div className="w-[30vw] p-5 flex flex-col gap-4">
       <h2 className="text-lg">Share your query</h2>
       <h6 className="text-xs text-gray-500">
-        We don't store or serialize the password, so{" "}
+        We don't store or serialize the password, so it{" "}
         <span className="font-bold">never</span> will be shared or persisted.
       </h6>
 

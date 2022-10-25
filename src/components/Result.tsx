@@ -1,5 +1,6 @@
 import { NonIdealState, Spinner } from "@blueprintjs/core";
 import { isStringResult, QueryResult } from "../lib/peform-query";
+import { isMessageResult } from "../lib/peform-query/guards";
 import TableResult from "./TableResult";
 
 type Params = {
@@ -41,6 +42,9 @@ export default function Result({ result, error, loading }: Params) {
     return <pre>{result.value}</pre>;
   }
 
+  if (isMessageResult(result)) {
+    return <NonIdealState title={result.message} icon="tick" />;
+  }
   if (result.data.length === 0) {
     return <NonIdealState title="No results" icon="high-priority" />;
   }
