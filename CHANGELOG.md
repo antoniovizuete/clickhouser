@@ -1,3 +1,19 @@
+## [1.3.11](https://github.com/antoniovizuete/clickhouser/compare/v1.3.10...v1.3.11) (2022-10-25)
+
+
+### :bug:
+
+* Fix columns width issue ([2911110](https://github.com/antoniovizuete/clickhouser/commit/291111011ddac56905dd4ce09bece7401281d908))
+
+### :rocket:
+
+* Add 200-no-body response handler ([1d98eab](https://github.com/antoniovizuete/clickhouser/commit/1d98eab190e7523d7eb1eec2bd1b50bb84edfc82))
+* Fix typo ([924ee54](https://github.com/antoniovizuete/clickhouser/commit/924ee543c8d262c8d11d17a3c1c20c4d6615a03e))
+
+### :zap:
+
+* Improve chunks size ([3eafd7a](https://github.com/antoniovizuete/clickhouser/commit/3eafd7add619132a0fc69167fa6da0ba35159269))
+
 ## [1.3.10](https://github.com/antoniovizuete/clickhouser/compare/v1.3.9...v1.3.10) (2022-10-21)
 
 
