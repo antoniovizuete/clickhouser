@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/antoniovizuete/clickhouser/compare/v1.4.0...v1.4.1) (2022-10-25)
+
+
+### :rocket:
+
+* Update README ([9a846dc](https://github.com/antoniovizuete/clickhouser/commit/9a846dc271ed938ca257c61f074b27128f8f110a))
+
 # [1.4.0](https://github.com/antoniovizuete/clickhouser/compare/v1.3.11...v1.4.0) (2022-10-25)
 
 
