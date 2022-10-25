@@ -11,6 +11,7 @@ It aims to provide some features:
 - Rich SQL editor.
 - Interface to give query parameters.
 - Useful UI.
+- Download the retreived data on multiple formats (JSON, CSV, TSV, etc)
 
 ## Disclaimer
 
