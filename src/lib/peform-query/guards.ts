@@ -1,4 +1,4 @@
-import { JsonResult, QueryResult, StringResult } from "./types";
+import { JsonResult, MessageResult, QueryResult, StringResult } from "./types";
 
 export const isStringResult = (
   result?: QueryResult
@@ -8,4 +8,10 @@ export const isStringResult = (
 
 export const isJsonResult = (result?: QueryResult): result is JsonResult => {
   return (result as JsonResult)?.data !== undefined;
+};
+
+export const isMessageResult = (
+  result?: QueryResult
+): result is MessageResult => {
+  return (result as MessageResult)?.message !== undefined;
 };

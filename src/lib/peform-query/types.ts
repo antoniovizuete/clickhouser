@@ -6,6 +6,10 @@ export type Params = {
   jsonParams?: string;
 };
 
+export type MessageResult = {
+  message: string;
+};
+
 export type StringResult = {
   value: string;
 };
@@ -28,4 +32,4 @@ export type Statistics = {
   bytes_read: number;
 };
 
-export type QueryResult = StringResult | JsonResult;
+export type QueryResult = StringResult | JsonResult | MessageResult;

@@ -7,6 +7,9 @@ type ReturnType = {
 
 const parseResponse = (response: string): QueryResult => {
   try {
+    if (response === "") {
+      return { message: "Ok" };
+    }
     return JSON.parse(response);
   } catch (e) {
     return { value: response };
