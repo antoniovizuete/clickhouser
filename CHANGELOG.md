@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/antoniovizuete/clickhouser/compare/v1.3.11...v1.4.0) (2022-10-25)
+
+
+### :sparkles:
+
+* Add download button ([39c6c3e](https://github.com/antoniovizuete/clickhouser/commit/39c6c3ea97f5938d800126ed3717a4bac2c498a9))
+
 ## [1.3.11](https://github.com/antoniovizuete/clickhouser/compare/v1.3.10...v1.3.11) (2022-10-25)
 
 
