@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/antoniovizuete/clickhouser/compare/v1.4.2...v1.4.3) (2022-10-27)
+
+
+### :rocket:
+
+* Minor change on rendering cells ([e8bddd7](https://github.com/antoniovizuete/clickhouser/commit/e8bddd784d149a335731394c7df06981ad5147a0))
+
 ## [1.4.2](https://github.com/antoniovizuete/clickhouser/compare/v1.4.1...v1.4.2) (2022-10-27)
 
 
