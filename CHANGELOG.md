@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/antoniovizuete/clickhouser/compare/v1.4.1...v1.4.2) (2022-10-27)
+
+
+### :recycle:
+
+* Pin dependencies version ([6ad411d](https://github.com/antoniovizuete/clickhouser/commit/6ad411d8a4eae8248d5f1c2734d67f95eb553a54))
+
 ## [1.4.1](https://github.com/antoniovizuete/clickhouser/compare/v1.4.0...v1.4.1) (2022-10-25)
 
 
