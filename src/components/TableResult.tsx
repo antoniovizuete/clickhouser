@@ -47,14 +47,12 @@ export default function TableResult({ result }: Params) {
         }
         const value = String(rawValue);
         return (
-          <Cell>
-            {value.length < 50 ? (
-              <div className="font-mono text-ellipsis">{value}</div>
-            ) : (
-              <Tooltip2 content={value} placement="left-start" minimal>
+          <Cell className="text-ellipsis">
+            <Tooltip2 content={value} disabled={value.length < 50}>
+              <div className="font-mono text-ellipsis whitespace-pre">
                 {value}
-              </Tooltip2>
-            )}
+              </div>
+            </Tooltip2>
           </Cell>
         );
       }}
