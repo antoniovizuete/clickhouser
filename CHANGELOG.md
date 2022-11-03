@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/antoniovizuete/clickhouser/compare/v1.4.4...v1.5.0) (2022-11-03)
+
+
+### :sparkles:
+
+* Add an input to change the name ([144e2bd](https://github.com/antoniovizuete/clickhouser/commit/144e2bd7d63ff8e5508d28f7e280d99cd8b0b190))
+
 ## [1.4.4](https://github.com/antoniovizuete/clickhouser/compare/v1.4.3...v1.4.4) (2022-11-03)
 
 
