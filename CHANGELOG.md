@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/antoniovizuete/clickhouser/compare/v1.5.0...v1.5.1) (2022-11-03)
+
+
+### :bug:
+
+* Allow set param as null ([b65dcea](https://github.com/antoniovizuete/clickhouser/commit/b65dceaca3be7cc5c3891ebd868891e1a48a64c5))
+
 # [1.5.0](https://github.com/antoniovizuete/clickhouser/compare/v1.4.4...v1.5.0) (2022-11-03)
 
 
