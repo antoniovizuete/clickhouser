@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/antoniovizuete/clickhouser/compare/v1.4.3...v1.4.4) (2022-11-03)
+
+
+### :rocket:
+
+* Add favicon and Brand component ([fd269dc](https://github.com/antoniovizuete/clickhouser/commit/fd269dcafc88730869712f8ed858ee64f30b4162))
+
 ## [1.4.3](https://github.com/antoniovizuete/clickhouser/compare/v1.4.2...v1.4.3) (2022-10-27)
 
 
