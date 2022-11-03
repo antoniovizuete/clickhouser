@@ -1,5 +1,6 @@
 import { Icon, Menu } from "@blueprintjs/core";
 import { MenuItem2, Popover2, Tooltip2 } from "@blueprintjs/popover2";
+import { useTheme } from "../contexts/useTheme";
 import { download, KindEnum } from "../lib/file-downloader";
 import { JsonResult } from "../lib/peform-query";
 import {
@@ -12,6 +13,7 @@ type Props = {
 };
 
 export default function LeftFooter({ result }: Props) {
+  const { bpTheme } = useTheme();
   const { statistics, data } = result;
   const handleDownload = (kind: KindEnum) => () => {
     download(result, kind);
@@ -24,34 +26,47 @@ export default function LeftFooter({ result }: Props) {
         {formatReadableRows(statistics.rows_read)} read rows
       </div>
       <div className="stat">{formatReadableBytes(statistics.bytes_read)}</div>
-      <div className="stat bg-[#fbb360]">
-        <Popover2
-          position="top"
-          minimal
-          content={
-            <Menu>
-              <MenuItem2
-                text="As raw JSON"
-                onClick={handleDownload(KindEnum.RAW)}
+      {data.length > 0 && (
+        <div className="stat bg-[#fbb360]">
+          <Popover2
+            popoverClassName={bpTheme}
+            position="top"
+            minimal
+            content={
+              <Menu>
+                <MenuItem2
+                  text="As raw JSON"
+                  onClick={handleDownload(KindEnum.RAW)}
+                />
+                <MenuItem2
+                  text="As JSON"
+                  onClick={handleDownload(KindEnum.JSON)}
+                />
+                <MenuItem2
+                  text="As JSONEachRow"
+                  onClick={handleDownload(KindEnum.JSON_EACH_ROW)}
+                />
+                <MenuItem2
+                  text="As CSV"
+                  onClick={handleDownload(KindEnum.CSV)}
+                />
+                <MenuItem2
+                  text="As TSV"
+                  onClick={handleDownload(KindEnum.TSV)}
+                />
+              </Menu>
+            }
+          >
+            <Tooltip2 content="Download data">
+              <Icon
+                icon="bring-data"
+                className="cursor-pointer"
+                color="rgb(28 33 39)"
               />
-              <MenuItem2
-                text="As JSON"
-                onClick={handleDownload(KindEnum.JSON)}
-              />
-              <MenuItem2
-                text="As JSONEachRow"
-                onClick={handleDownload(KindEnum.JSON_EACH_ROW)}
-              />
-              <MenuItem2 text="As CSV" onClick={handleDownload(KindEnum.CSV)} />
-              <MenuItem2 text="As TSV" onClick={handleDownload(KindEnum.TSV)} />
-            </Menu>
-          }
-        >
-          <Tooltip2 content="Download data">
-            <Icon icon="bring-data" className="cursor-pointer" />
-          </Tooltip2>
-        </Popover2>
-      </div>
+            </Tooltip2>
+          </Popover2>
+        </div>
+      )}
     </div>
   );
 }

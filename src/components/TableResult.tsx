@@ -1,5 +1,6 @@
 import { Tooltip2 } from "@blueprintjs/popover2";
 import { Cell, Column, Table2 } from "@blueprintjs/table";
+import { useTheme } from "../contexts/useTheme";
 import { JsonResult } from "../lib/peform-query";
 
 type Params = {
@@ -7,6 +8,8 @@ type Params = {
 };
 
 export default function TableResult({ result }: Params) {
+  const { bpTheme } = useTheme();
+
   const widths = Array.from(
     { length: Math.min(50, result.data.length) },
     (_: undefined, i: number) => i
@@ -64,7 +67,7 @@ export default function TableResult({ result }: Params) {
       <Table2
         columnWidths={widths}
         numRows={result.rows}
-        className="h-full"
+        className={`h-full ${bpTheme}`}
         enableColumnResizing
         enableColumnReordering={false}
         enableRowResizing={false}

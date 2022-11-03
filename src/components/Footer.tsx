@@ -7,7 +7,7 @@ type Props = {
 
 export default function Footer({ result }: Props) {
   return (
-    <div className="flex flex-row justify-between items-center pl-1 pr-5 py-0.5 bg-slate-50">
+    <div className="flex flex-row justify-between items-center pl-1 pr-5 py-0.5 bg-slate-50 dark:bg-neutral-800 dark:text-gray-400">
       {result && isJsonResult(result) ? (
         <>
           <LeftFooter result={result} />
