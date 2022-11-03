@@ -9,6 +9,7 @@ export const initialState: UrlState = {
   serverAddress: "http://localhost:8123/",
   username: "default",
   jsonParams: '{\n  "param1": "value1",\n  "param2": "value2"\n}',
+  name: "Untitled query",
 };
 
 export const useQueryForm = ({

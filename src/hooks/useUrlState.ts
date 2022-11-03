@@ -7,6 +7,7 @@ export type UrlState = {
   query?: string;
   serverAddress: string;
   username: string;
+  name: string;
 };
 
 const SEPARATOR = ".";
@@ -29,19 +30,21 @@ const serialize = ({
   username,
   jsonParams,
   query,
+  name,
 }: UrlState): string =>
   [
     encode(jsonParams ?? ""),
     encode(query ?? ""),
     encode(serverAddress),
     encode(username),
+    encode(name),
   ].join(SEPARATOR);
 
 const deserialize = (
   encodedState: string,
   defaultState: UrlState
 ): UrlState => {
-  const [jsonParams, query, serverAddress, username] = encodedState
+  const [jsonParams, query, serverAddress, username, name] = encodedState
     .split(SEPARATOR)
     .map(decode);
 
@@ -50,6 +53,7 @@ const deserialize = (
     query: query ?? defaultState.query,
     serverAddress: serverAddress ?? defaultState.serverAddress,
     username: username ?? defaultState.username,
+    name: name ?? defaultState.name,
   };
 };
 

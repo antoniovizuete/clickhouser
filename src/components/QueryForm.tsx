@@ -1,6 +1,6 @@
 import { Alignment, Button, InputGroup, Navbar } from "@blueprintjs/core";
 import { Allotment } from "allotment";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { QueryResult } from "../lib/peform-query";
 
 import Editor, { EditorRef } from "./Editor";
@@ -8,6 +8,8 @@ import { useQueryForm } from "../hooks/useQueryForm";
 import { Popover2 } from "@blueprintjs/popover2";
 import CopyUrlPopover from "./CopyUrlPopover";
 import Brand from "./Brand";
+import ContentEditable, { ContentEditableEvent } from "react-contenteditable";
+import { useSetTitle } from "../hooks/useSetTitle";
 
 export type QueryFormProps = {
   onPerformQuery: () => void;
@@ -21,7 +23,7 @@ export default function QueryForm(props: QueryFormProps) {
   const runQueryButtonRef = useRef<Button>(null);
 
   const {
-    urlState: { query, serverAddress, username, jsonParams },
+    urlState: { query, serverAddress, username, jsonParams, name },
     setUrlState,
     password,
     setPassword,
@@ -29,6 +31,13 @@ export default function QueryForm(props: QueryFormProps) {
     openHelpDialog,
     HotKeysHelpDialog,
   } = useQueryForm(props);
+
+  const [title, setTitle] = useSetTitle(name);
+
+  const handleOnChangeName = (e: ContentEditableEvent) => {
+    setUrlState({ name: e.target.value });
+    setTitle(e.target.value);
+  };
 
   const clickOnRunQueryButton = () => {
     runQueryButtonRef.current?.buttonRef?.click();
@@ -84,7 +93,13 @@ export default function QueryForm(props: QueryFormProps) {
         <Allotment.Pane>
           <Allotment>
             <Allotment.Pane>
-              <div className="py-1 px-3 text-xs">Query</div>
+              <div className="py-1 px-3 text-xs">
+                <ContentEditable
+                  className="hover:cursor-pointer focus:cursor-text hover:focus:cursor-text"
+                  html={name}
+                  onChange={handleOnChangeName}
+                />
+              </div>
               <Editor
                 language="sql"
                 value={query}
