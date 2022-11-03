@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/antoniovizuete/clickhouser/compare/v1.5.1...v1.6.0) (2022-11-03)
+
+
+### :sparkles:
+
+* Add dark mode ([68ed31e](https://github.com/antoniovizuete/clickhouser/commit/68ed31e6edd457681ff73a0f5fbae76d27c6b6c8))
+
 ## [1.5.1](https://github.com/antoniovizuete/clickhouser/compare/v1.5.0...v1.5.1) (2022-11-03)
 
 
