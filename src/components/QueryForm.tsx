@@ -7,6 +7,7 @@ import Editor, { EditorRef } from "./Editor";
 import { useQueryForm } from "../hooks/useQueryForm";
 import { Popover2 } from "@blueprintjs/popover2";
 import CopyUrlPopover from "./CopyUrlPopover";
+import Brand from "./Brand";
 
 export type QueryFormProps = {
   onPerformQuery: () => void;
@@ -39,8 +40,8 @@ export default function QueryForm(props: QueryFormProps) {
         <Allotment.Pane maxSize={48} minSize={48}>
           <Navbar className="mb-2 bg-slate-50">
             <Navbar.Group align={Alignment.LEFT}>
-              <Navbar.Heading className="font-semibold tracking-tight text-[#eca834]">
-                Clickhouser
+              <Navbar.Heading>
+                <Brand />
               </Navbar.Heading>
               <InputGroup
                 leftIcon="globe-network"
