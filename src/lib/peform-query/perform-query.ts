@@ -19,6 +19,9 @@ const parseResponse = (response: string): QueryResult => {
 const transformBool = (value: boolean): string => (value ? "true" : "false");
 
 const serializeParamValue = (value: unknown) => {
+  if (value === null) {
+    return "";
+  }
   if (Array.isArray(value)) {
     if (value.length === 0) {
       return "[]";
