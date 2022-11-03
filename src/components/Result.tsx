@@ -1,6 +1,7 @@
 import { NonIdealState, Spinner } from "@blueprintjs/core";
 import { isStringResult, QueryResult } from "../lib/peform-query";
 import { isMessageResult } from "../lib/peform-query/guards";
+import Brand from "./Brand";
 import TableResult from "./TableResult";
 
 type Params = {
@@ -32,7 +33,7 @@ export default function Result({ result, error, loading }: Params) {
     return (
       <NonIdealState
         icon="search"
-        title="Clickhouser"
+        title={<Brand />}
         description="ClickHouse query runner"
       />
     );
