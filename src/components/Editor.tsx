@@ -5,6 +5,7 @@ import {
   KeyMod,
 } from "monaco-editor/esm/vs/editor/editor.api";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import { useTheme } from "../contexts/useTheme";
 import { addAction } from "../lib/editor-helpers/add-action.editor.helper";
 
 type EditorProps = {
@@ -63,8 +64,11 @@ const Editor = forwardRef<EditorRef, EditorProps>((props, ref) => {
     onChange?.(value);
   };
 
+  const { theme } = useTheme();
+
   return (
     <MonacoEditor
+      theme={theme === "dark" ? "vs-dark" : "light"}
       className="mb-6"
       height="100%"
       width="100%"

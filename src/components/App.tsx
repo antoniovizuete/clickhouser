@@ -38,7 +38,9 @@ export default function App() {
           />
         </Allotment.Pane>
         <Allotment.Pane>
-          <Result result={result} error={error} loading={loading} />
+          <div className="h-full dark:bg-neutral-800 dark:text-gray-100">
+            <Result result={result} error={error} loading={loading} />
+          </div>
         </Allotment.Pane>
         <Allotment.Pane maxSize={24} minSize={24} className="p-0">
           <Footer result={result} />

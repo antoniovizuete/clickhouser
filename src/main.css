@@ -20,3 +20,7 @@ body,
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
+
+.bp4-dark .bp4-table-quadrant {
+  background-color: rgb(38, 38, 38);
+}
