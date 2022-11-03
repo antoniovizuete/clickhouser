@@ -19,9 +19,23 @@ The disclaimer document is [DISCLAIMER.md](./DISCLAIMER.md)
 
 ## Caveats
 
-Due to Clickhouser being accessible through a secured connection (HTTPS), you can get an error if you try to perform a query against a non-secured server (HTTP). There is a couple of workarounds, but only one depends on you by allowing "Insecure content".
+### Query parameters, null values
+
+Since the query parameters are passed as URL parameters, null values are not supported. If you need to pass a null value, you can use `null` then the param will be received by the server as an empty string. You can use `nullif` to transform the empty string to null.
+
+```json
+{
+  "param1": null
+}
+```
+
+```sql
+SELECT nullif('{{param1}}', '') AS param1
+```
 
 ### Allow "Insecure content"
+
+Due to Clickhouser being accessible through a secured connection (HTTPS), you can get an error if you try to perform a query against a non-secured server (HTTP). There is a couple of workarounds, but only one depends on you by allowing "Insecure content".
 
 Click on the lock icon in the URL bar, then click "Site settings".
 

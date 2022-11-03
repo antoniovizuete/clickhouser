@@ -109,7 +109,9 @@ export default function QueryForm(props: QueryFormProps) {
               />
             </Allotment.Pane>
             <Allotment.Pane>
-              <div className="py-1 px-3 text-xs">Parameters</div>
+              <div className="py-1 px-3 text-xs cursor-default ">
+                Parameters
+              </div>
               <Editor
                 ref={paramsEditorRef}
                 language="json"
