@@ -1,3 +1,14 @@
+## [1.6.1](https://github.com/antoniovizuete/clickhouser/compare/v1.6.0...v1.6.1) (2022-11-04)
+
+
+### :art:
+
+* Improve dark mode ([863470d](https://github.com/antoniovizuete/clickhouser/commit/863470daf56a976b9e74c5e2146263545cb2ff75))
+
+### :bug:
+
+* Disallow enter new line on name ([5c921d8](https://github.com/antoniovizuete/clickhouser/commit/5c921d885e099a4d7103f5d6b02b2b7e34e12c6d))
+
 # [1.6.0](https://github.com/antoniovizuete/clickhouser/compare/v1.5.1...v1.6.0) (2022-11-03)
 
 
