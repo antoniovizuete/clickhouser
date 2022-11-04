@@ -9,7 +9,13 @@ body,
 }
 
 :root {
-  --focus-border: #eca834;
+  --focus-border-rgb: 236, 168, 52;
+  --focus-border: rgb(var(--focus-border-rgb));
+}
+
+:focus {
+  outline: 1px solid rgba(var(--focus-border-rgb), 0.5);
+  outline-offset: 0px;
 }
 
 .bp4-input {
@@ -23,4 +29,15 @@ body,
 
 .bp4-dark .bp4-table-quadrant {
   background-color: rgb(38, 38, 38);
+}
+
+.bp4-input {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.bp4-dark .bp4-input {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.bp4-input:focus {
+  box-shadow: 0 0 0 1px rgba(var(--focus-border), 0.5);
 }

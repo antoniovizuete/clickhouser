@@ -34,7 +34,7 @@ export default function QueryForm(props: QueryFormProps) {
   } = useQueryForm(props);
 
   const [, setTitle] = useSetTitle(name);
-  const { theme, bpTheme, toggleTheme } = useTheme();
+  const { bpTheme, toggleTheme } = useTheme();
 
   const handleOnChangeName = (e: ContentEditableEvent) => {
     setUrlState({ name: e.target.value });
@@ -54,29 +54,33 @@ export default function QueryForm(props: QueryFormProps) {
               <Navbar.Heading>
                 <Brand />
               </Navbar.Heading>
-              <InputGroup
-                className={`flex-grow ${bpTheme}`}
-                leftIcon="globe-network"
-                value={serverAddress}
-                placeholder="Server address"
-                onChange={(e) => setUrlState({ serverAddress: e.target.value })}
-                size={40}
-              />
-              <InputGroup
-                className={bpTheme}
-                leftIcon="user"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUrlState({ username: e.target.value })}
-              />
-              <InputGroup
-                className={bpTheme}
-                leftIcon="lock"
-                placeholder="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div className="flex items-center gap-1">
+                <InputGroup
+                  className={`flex-grow ${bpTheme}`}
+                  leftIcon="globe-network"
+                  value={serverAddress}
+                  placeholder="Server address"
+                  onChange={(e) =>
+                    setUrlState({ serverAddress: e.target.value })
+                  }
+                  size={40}
+                />
+                <InputGroup
+                  className={bpTheme}
+                  leftIcon="user"
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUrlState({ username: e.target.value })}
+                />
+                <InputGroup
+                  className={bpTheme}
+                  leftIcon="lock"
+                  placeholder="Password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
               <div className="flex flex-row justify-start items-center ml-1 gap-1">
                 <Button
                   ref={runQueryButtonRef}
@@ -86,26 +90,39 @@ export default function QueryForm(props: QueryFormProps) {
                   onClick={runQuery}
                   disabled={!query}
                 />
-
-                <Button
-                  className={"dark:bg-[#383e47] dark:hover:bg-[#2f343c]"}
-                  icon="help"
-                  onClick={openHelpDialog}
-                />
                 <Popover2 content={<CopyUrlPopover />} placement="bottom">
                   <Button
-                    icon="social-media"
+                    icon={
+                      <Icon
+                        icon="social-media"
+                        color={bpTheme ? "white" : "#383e47"}
+                      />
+                    }
                     className={"dark:bg-[#383e47] dark:hover:bg-[#2f343c]"}
                   />
                 </Popover2>
               </div>
             </Navbar.Group>
             <Navbar.Group align={Alignment.RIGHT}>
-              <Button
-                className={"dark:bg-[#383e47] dark:hover:bg-[#2f343c]"}
-                icon={<Icon icon={theme === "light" ? "moon" : "flash"} />}
-                onClick={toggleTheme}
-              ></Button>
+              <div className="flex flex-row justify-start items-center gap-1">
+                <Button
+                  className={"dark:bg-[#383e47] dark:hover:bg-[#2f343c]"}
+                  icon={
+                    <Icon
+                      icon={bpTheme ? "flash" : "moon"}
+                      color={bpTheme ? "white" : "#383e47"}
+                    />
+                  }
+                  onClick={toggleTheme}
+                ></Button>
+                <Button
+                  className={"dark:bg-[#383e47] dark:hover:bg-[#2f343c]"}
+                  icon={
+                    <Icon icon="help" color={bpTheme ? "white" : "#383e47"} />
+                  }
+                  onClick={openHelpDialog}
+                />
+              </div>
             </Navbar.Group>
           </Navbar>
         </Allotment.Pane>
