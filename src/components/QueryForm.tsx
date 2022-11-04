@@ -37,8 +37,9 @@ export default function QueryForm(props: QueryFormProps) {
   const { bpTheme, toggleTheme } = useTheme();
 
   const handleOnChangeName = (e: ContentEditableEvent) => {
-    setUrlState({ name: e.target.value });
-    setTitle(e.target.value);
+    const name = e.target.value.split("<div><br></div>").join("");
+    setUrlState({ name });
+    setTitle(name);
   };
 
   const clickOnRunQueryButton = () => {
