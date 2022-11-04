@@ -19,7 +19,7 @@ export default function LeftFooter({ result }: Props) {
     download(result, kind);
   };
   return (
-    <div className="flex flex-row justify-start items-center gap-2 divide-x divide-gray-300 border-r border-gray-300">
+    <div className="flex flex-row justify-start items-center gap-2 divide-x divide-neutral-300 dark:divide-neutral-500 border-l border-l-neutral-300 dark:border-l-neutral-500">
       <div className="stat">Elapsed: {statistics.elapsed.toFixed(2)} s.</div>
       <div className="stat">{formatReadableRows(data.length)} rows</div>
       <div className="stat">
