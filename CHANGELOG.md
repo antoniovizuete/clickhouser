@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/antoniovizuete/clickhouser/compare/v1.6.2...v1.6.3) (2022-11-08)
+
+
+### :rocket:
+
+* Add Google Analytics ([17b1ad4](https://github.com/antoniovizuete/clickhouser/commit/17b1ad462879a3634911fda2777f8dd1d9f90856))
+
 ## [1.6.2](https://github.com/antoniovizuete/clickhouser/compare/v1.6.1...v1.6.2) (2022-11-08)
 
 
