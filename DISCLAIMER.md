@@ -70,3 +70,4 @@ The Company will not be liable to You or anyone else for any decision made or ac
 If you have any questions about this Disclaimer, You can contact Us:
 
 - By GitHub Issues: http://github.com/antoniovizuete/clickhouser/issues
+- By email: hi@clickhouser.app
