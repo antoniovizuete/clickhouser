@@ -1,3 +1,14 @@
+## [1.6.4](https://github.com/antoniovizuete/clickhouser/compare/v1.6.3...v1.6.4) (2022-11-08)
+
+
+### :fire:
+
+* Remove redundat GA script ([66b8783](https://github.com/antoniovizuete/clickhouser/commit/66b8783fa6b559bf48af4b248e0522718bbec6d5))
+
+### :rocket:
+
+* Add cookie consent ([bc94627](https://github.com/antoniovizuete/clickhouser/commit/bc946271e728eb9ce36c7f6c317137b671b5e0a9))
+
 ## [1.6.3](https://github.com/antoniovizuete/clickhouser/compare/v1.6.2...v1.6.3) (2022-11-08)
 
 
