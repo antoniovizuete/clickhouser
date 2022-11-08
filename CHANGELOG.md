@@ -1,3 +1,15 @@
+## [1.6.2](https://github.com/antoniovizuete/clickhouser/compare/v1.6.1...v1.6.2) (2022-11-08)
+
+
+### :construction_worker:
+
+* Move CD to GitHub Actions ([a76dbfe](https://github.com/antoniovizuete/clickhouser/commit/a76dbfe7052d1b778535b39e6707cf14cad32662))
+
+### :rocket:
+
+* Install @blueprint/table 4.7.3 ([53d507b](https://github.com/antoniovizuete/clickhouser/commit/53d507bdc7a50dc4ac2a14bab46e6ced8b08e6e9))
+* Install monaco-editor@0.34.1 ([9da4569](https://github.com/antoniovizuete/clickhouser/commit/9da4569d4bb389192903994529b19773cc86db6e))
+
 ## [1.6.1](https://github.com/antoniovizuete/clickhouser/compare/v1.6.0...v1.6.1) (2022-11-04)
 
 
