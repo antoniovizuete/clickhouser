@@ -1,3 +1,31 @@
+## [1.6.5](https://github.com/antoniovizuete/clickhouser/compare/v1.6.4...v1.6.5) (2022-11-10)
+
+
+### :bug:
+
+* Remove skip CI flag from automatic commit of update-screenshots ([753b340](https://github.com/antoniovizuete/clickhouser/commit/753b3408a6444275b9af0bfa28b60524980f4d52))
+
+### :construction_worker:
+
+* Enable CI/CD chain ([6b2c362](https://github.com/antoniovizuete/clickhouser/commit/6b2c362274c8254fa5f58b255168e1a2f4a2bfb7))
+* upgrade @blueprintjs/table from 4.7.3 to 4.7.4 ([60b80a5](https://github.com/antoniovizuete/clickhouser/commit/60b80a52f66b66fffba913e24597686aef4e3c6d))
+
+### :memo:
+
+* Update contact [skip ci] ([5e61988](https://github.com/antoniovizuete/clickhouser/commit/5e6198856129f36d04c292892ec008b2c74b8663))
+
+### :robot:
+
+* [skip ci] Update Snapshots ([ddca407](https://github.com/antoniovizuete/clickhouser/commit/ddca407b80375bfbaaec86b51f4a3092a980fb5c))
+
+### :rocket:
+
+* Add e2e smoke test ([6814d97](https://github.com/antoniovizuete/clickhouser/commit/6814d97c4627f4114e05f8342d61f8fdd719fd7c))
+* Fix brand h2 issue ([346b207](https://github.com/antoniovizuete/clickhouser/commit/346b207de7731b6ac6a4c11b4de4d312fa388851))
+* Move version to help dialog ([bc7d8d1](https://github.com/antoniovizuete/clickhouser/commit/bc7d8d1134b921b1954d950ca1382c48b0bd7bb1))
+* Reactivate e2e tests ([668c59a](https://github.com/antoniovizuete/clickhouser/commit/668c59ac888596e4b341a40bf209c4ca0bab2dce))
+* Temporay skip of testing steps ([ee71ee7](https://github.com/antoniovizuete/clickhouser/commit/ee71ee77293ac2a22b5a3c947775a6f18cb69c46))
+
 ## [1.6.4](https://github.com/antoniovizuete/clickhouser/compare/v1.6.3...v1.6.4) (2022-11-08)
 
 
