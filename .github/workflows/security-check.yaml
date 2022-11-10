@@ -1,7 +1,7 @@
 name: Security Check
 on:
   workflow_run:
-    workflows: ["Unit and Integration Tests"]
+    workflows: ["End-to-end Tests"]
     branches: [main]
     types:
       - completed
