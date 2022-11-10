@@ -11,12 +11,13 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "if [ -z \"$CI\" ]; then husky install ; fi",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "e2e": "playwright test"
   },
   "dependencies": {
     "@blueprintjs/core": "4.11.5",
     "@blueprintjs/popover2": "1.8.0",
-    "@blueprintjs/table": "4.7.4",
+    "@blueprintjs/table": "4.7.3",
     "@monaco-editor/react": "^4.4.6",
     "allotment": "1.17.0",
     "js-base64": "3.7.2",
@@ -29,6 +30,7 @@
     "react-split": "2.0.14"
   },
   "devDependencies": {
+    "@playwright/test": "1.27.1",
     "@semantic-release/changelog": "6.0.1",
     "@semantic-release/git": "10.0.1",
     "@semantic-release/github": "8.0.6",
