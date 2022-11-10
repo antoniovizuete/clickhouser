@@ -1,6 +1,8 @@
 import { Classes, Dialog, Tag } from "@blueprintjs/core";
 import { forwardRef, useImperativeHandle, useState } from "react";
+import { useTheme } from "../contexts/useTheme";
 import { HotKey } from "../hooks/useHotKeys/types";
+import Brand from "./Brand";
 
 type Props = {
   hotKeys: HotKey[];
@@ -38,6 +40,7 @@ const trasformToSymbol = (key: string) => {
 
 const HotKeysHelpDialog = forwardRef<HotKeysHelpDialogRef, Props>(
   ({ hotKeys }, ref) => {
+    const { bpTheme } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
     const close = () => setIsOpen(false);
     const open = () => setIsOpen(true);
@@ -64,8 +67,14 @@ const HotKeysHelpDialog = forwardRef<HotKeysHelpDialogRef, Props>(
       ));
 
     return (
-      <Dialog isOpen={isOpen} onClose={close}>
-        <div className={`${Classes.DIALOG_BODY} flex flex-col gap-2`}>
+      <Dialog isOpen={isOpen} onClose={close} className={bpTheme}>
+        <div
+          className={`${Classes.DIALOG_BODY} ${bpTheme} flex flex-col gap-2`}
+        >
+          <div className="flex flex-col justify-center items-center text-xl">
+            <Brand />
+            <div className="mt-1 text-sm">v{APP_VERSION}</div>
+          </div>
           {hotKeys.map(({ combo, description }) => (
             <div
               key={combo}
