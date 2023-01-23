@@ -12,15 +12,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./components/App";
 import "./main.css";
 import { ThemeProvider } from "./contexts/useTheme";
+import { PasswordProvider } from "./contexts/usePassword";
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<App />} />
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
+    <PasswordProvider>
+      <ThemeProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<App />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </PasswordProvider>
   </React.StrictMode>
 );

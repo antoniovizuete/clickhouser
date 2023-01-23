@@ -91,7 +91,7 @@ export async function performQuery({
     const queryParams = [
       "add_http_cors_header=1",
       `user=${encodeURIComponent(username)}`,
-      `password=${encodeURIComponent(password)}`,
+      `password=${encodeURIComponent(password || "")}`,
       "default_format=JSONCompact",
       "max_result_rows=1000",
       "max_result_bytes=10000000",
