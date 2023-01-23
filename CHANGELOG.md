@@ -1,3 +1,10 @@
+## [1.6.8](https://github.com/antoniovizuete/clickhouser/compare/v1.6.7...v1.6.8) (2023-01-23)
+
+
+### :bug:
+
+* Be able to query for tables even the pass is empty ([e208968](https://github.com/antoniovizuete/clickhouser/commit/e208968f1a5a5cb1398c3d7db90adcfcbd940028))
+
 ## [1.6.7](https://github.com/antoniovizuete/clickhouser/compare/v1.6.6...v1.6.7) (2023-01-23)
 
 
