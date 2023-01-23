@@ -54,6 +54,15 @@ const serializeParamValue = (value: unknown) => {
   throw new Error(`Unsupported type: ${typeof value}`);
 };
 
+const checkUrl = (url: string) => {
+  try {
+    new URL(url);
+  } catch (error) {
+    return false;
+  }
+  return true;
+};
+
 export async function performQuery({
   query,
   username,
@@ -70,6 +79,12 @@ export async function performQuery({
   if (!serverAddress) {
     return {
       error: "Server address is empty",
+    };
+  }
+
+  if (!checkUrl(serverAddress)) {
+    return {
+      error: "Server address is invalid",
     };
   }
 

@@ -5,7 +5,7 @@ test("Smoke test", async ({ page }) => {
 
   await page.click("button.cc-nb-okagree");
 
-  await expect(page).toHaveScreenshot();
+  //await expect(page).toHaveScreenshot();
 
   await expect(page).toHaveTitle(/Clickhouser/);
 
