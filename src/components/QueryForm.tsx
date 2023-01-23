@@ -11,6 +11,7 @@ import Brand from "./Brand";
 import ContentEditable, { ContentEditableEvent } from "react-contenteditable";
 import { useSetTitle } from "../hooks/useSetTitle";
 import { useTheme } from "../contexts/useTheme";
+import { usePasswordContext } from "../contexts/usePassword";
 
 export type QueryFormProps = {
   onPerformQuery: () => void;
@@ -22,12 +23,10 @@ export type QueryFormProps = {
 export default function QueryForm(props: QueryFormProps) {
   const { paramsEditorRef } = props;
   const runQueryButtonRef = useRef<Button>(null);
-
+  const { password, setPassword } = usePasswordContext();
   const {
     urlState: { query, serverAddress, username, jsonParams, name },
     setUrlState,
-    password,
-    setPassword,
     runQuery,
     openHelpDialog,
     HotKeysHelpDialog,

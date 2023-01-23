@@ -22,6 +22,7 @@
     "allotment": "1.17.0",
     "js-base64": "3.7.3",
     "monaco-editor": "0.34.1",
+    "pgsql-ast-parser": "^11.0.0",
     "react": "^18.0.0",
     "react-contenteditable": "3.3.6",
     "react-dom": "^18.0.0",

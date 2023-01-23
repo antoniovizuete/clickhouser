@@ -3,6 +3,7 @@ import { UrlState, useUrlState } from "./useUrlState";
 import { performQuery } from "../lib/peform-query";
 import { QueryFormProps } from "../components/QueryForm";
 import { useHotKeys } from "./useHotKeys";
+import { usePasswordContext } from "../contexts/usePassword";
 
 export const initialState: UrlState = {
   query: "SELECT 1",
@@ -21,7 +22,7 @@ export const useQueryForm = ({
     initialState,
   });
 
-  const [password, setPassword] = useState("");
+  const { password } = usePasswordContext();
 
   const runQuery = useCallback(async () => {
     onPerformQuery?.();
@@ -54,7 +55,5 @@ export const useQueryForm = ({
     runQuery,
     setUrlState,
     urlState,
-    password,
-    setPassword,
   };
 };

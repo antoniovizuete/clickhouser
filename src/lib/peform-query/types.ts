@@ -1,7 +1,7 @@
 export type Params = {
   query?: string;
   username: string;
-  password: string;
+  password?: string;
   serverAddress: string;
   jsonParams?: string;
 };

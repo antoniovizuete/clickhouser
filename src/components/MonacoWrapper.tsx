@@ -6,6 +6,8 @@ type Props = PropsWithChildren<{
 }>;
 
 export default function MonacoWrapper({ children, jsonParams = "{}" }: Props) {
+  
+
   useMonacoConfigSupplier({ jsonParams });
   return <>{children}</>;
 }
