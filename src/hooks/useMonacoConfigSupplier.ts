@@ -85,7 +85,7 @@ export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
   useEffect(() => {
     let subs: IDisposable[] = [];
 
-    if (monaco && password) {
+    if (monaco) {
       getTablesSuggestionProvider({
         password,
         ...urlState,
