@@ -7,7 +7,7 @@ import { paremeterTypeSuggetionProvider } from "../lib/editor-suggestions/parame
 import { useUrlState } from "./useUrlState";
 import { initialState } from "../hooks/useQueryForm";
 import { usePasswordContext } from "../contexts/usePassword";
-import { getTablesSuggetionProvider } from "../lib/editor-suggestions/tables.suggestion";
+import { getTablesSuggestionProvider } from "../lib/editor-suggestions/tables.suggestion";
 
 type Params = {
   jsonParams: string;
@@ -19,7 +19,6 @@ export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
   const { password } = usePasswordContext();
   const [paramKeys, setParamKeys] = useState<string[]>([]);
   const [areSameParamKeys, setAreSameParamKeys] = useState(false);
-  const [subs, setSubs] = useState<IDisposable[]>([]);
 
   useEffect(() => {
     let subs: IDisposable[] = [];
@@ -86,8 +85,8 @@ export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
   useEffect(() => {
     let subs: IDisposable[] = [];
 
-    if (monaco)
-      getTablesSuggetionProvider({
+    if (monaco && password) {
+      getTablesSuggestionProvider({
         password,
         ...urlState,
       }).then(({ provider, language }) =>
@@ -95,10 +94,11 @@ export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
           monaco.languages.registerCompletionItemProvider(language, provider)
         )
       );
+    }
     return () => {
       subs.forEach((sub) => sub.dispose());
     };
-  }, [monaco]);
+  }, [monaco, password]);
 };
 
 const arraysAreEqual = (array1: string[], array2: string[]): boolean =>
