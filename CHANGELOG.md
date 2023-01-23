@@ -1,3 +1,14 @@
+## [1.6.7](https://github.com/antoniovizuete/clickhouser/compare/v1.6.6...v1.6.7) (2023-01-23)
+
+
+### :rocket:
+
+* Add table suggestions ([52a3860](https://github.com/antoniovizuete/clickhouser/commit/52a3860730eebc3b40563d6e80d548670889fa05))
+
+### :wip:
+
+* WIP ([6b64c32](https://github.com/antoniovizuete/clickhouser/commit/6b64c32cb33c4d75faacfa31be575529ff115ad1))
+
 ## [1.6.6](https://github.com/antoniovizuete/clickhouser/compare/v1.6.5...v1.6.6) (2023-01-23)
 
 
