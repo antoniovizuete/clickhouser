@@ -1,3 +1,23 @@
+## [1.6.6](https://github.com/antoniovizuete/clickhouser/compare/v1.6.5...v1.6.6) (2023-01-23)
+
+
+### :bug:
+
+* Fix high severity vuln ([c72f725](https://github.com/antoniovizuete/clickhouser/commit/c72f725605a4b80aa9c0b0cee9c50194a4629363))
+* Validate URL before query running ([c5acfe1](https://github.com/antoniovizuete/clickhouser/commit/c5acfe1e4b8c58a3779500fe30ee21db0171c25a))
+
+### :recycle:
+
+* Fix js-base64 version on lock ([c61696d](https://github.com/antoniovizuete/clickhouser/commit/c61696db1bd50398c871de6f98d10faac8eb43ea))
+
+### :robot:
+
+* Update Snapshots ([d743589](https://github.com/antoniovizuete/clickhouser/commit/d743589f33cba740cf502dcd8b2b44182990c63f))
+
+### :white_check_mark:
+
+* Skip "have screenshot" test ([941ebec](https://github.com/antoniovizuete/clickhouser/commit/941ebece0639cd8666804d6b2a30a38d39c9d290))
+
 ## [1.6.5](https://github.com/antoniovizuete/clickhouser/compare/v1.6.4...v1.6.5) (2022-11-10)
 
 
