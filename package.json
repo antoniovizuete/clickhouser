@@ -19,7 +19,7 @@
     "@blueprintjs/popover2": "1.8.1",
     "@blueprintjs/table": "4.7.5",
     "@monaco-editor/react": "^4.4.6",
-    "allotment": "1.17.0",
+    "allotment": "1.17.1",
     "js-base64": "3.7.3",
     "monaco-editor": "0.34.1",
     "pgsql-ast-parser": "^11.0.0",
