@@ -17,7 +17,7 @@
   "dependencies": {
     "@blueprintjs/core": "4.11.6",
     "@blueprintjs/popover2": "1.8.1",
-    "@blueprintjs/table": "4.7.5",
+    "@blueprintjs/table": "4.7.10",
     "@monaco-editor/react": "^4.4.6",
     "allotment": "1.17.0",
     "js-base64": "3.7.3",
