@@ -1,4 +1,5 @@
 import { Alignment, Button, Icon, InputGroup, Navbar } from "@blueprintjs/core";
+
 import { Allotment } from "allotment";
 import { useRef, useState } from "react";
 import { QueryResult } from "../lib/peform-query";
@@ -12,6 +13,7 @@ import ContentEditable, { ContentEditableEvent } from "react-contenteditable";
 import { useSetTitle } from "../hooks/useSetTitle";
 import { useTheme } from "../contexts/useTheme";
 import { usePasswordContext } from "../contexts/usePassword";
+import LoadFileDialog from "./LoadFileDialog";
 
 export type QueryFormProps = {
   onPerformQuery: () => void;
@@ -101,6 +103,7 @@ export default function QueryForm(props: QueryFormProps) {
                     className={"dark:bg-[#383e47] dark:hover:bg-[#2f343c]"}
                   />
                 </Popover2>
+                <LoadFileDialog />
               </div>
             </Navbar.Group>
             <Navbar.Group align={Alignment.RIGHT}>
