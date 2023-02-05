@@ -28,7 +28,8 @@
     "react-dom": "^18.0.0",
     "react-hotkeys-hook": "3.4.7",
     "react-router-dom": "^6.4.3",
-    "react-split": "2.0.14"
+    "react-split": "2.0.14",
+    "sql-formatter": "^12.1.0"
   },
   "devDependencies": {
     "@playwright/test": "1.27.1",
