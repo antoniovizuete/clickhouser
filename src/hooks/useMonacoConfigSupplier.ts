@@ -8,7 +8,7 @@ import { useUrlState } from "./useUrlState";
 import { initialState } from "../hooks/useQueryForm";
 import { usePasswordContext } from "../contexts/usePassword";
 import { getTablesSuggestionProvider } from "../lib/editor-suggestions/tables.suggestion";
-import { format } from 'sql-formatter';
+import { format } from "sql-formatter";
 
 type Params = {
   jsonParams: string;
@@ -27,8 +27,8 @@ export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
       subs.push(
         monaco.languages.registerCompletionItemProvider(
           paremeterSnippetSuggetionProvider.language,
-          paremeterSnippetSuggetionProvider.provider,
-        ),
+          paremeterSnippetSuggetionProvider.provider
+        )
       );
       subs.push(
         monaco.languages.registerCompletionItemProvider(
@@ -37,10 +37,9 @@ export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
         )
       );
       subs.push(
-        monaco.languages.registerDocumentFormattingEditProvider('sql', {
+        monaco.languages.registerDocumentFormattingEditProvider("sql", {
           async provideDocumentFormattingEdits(model) {
-            
-            const text = format(model.getValue(), { language: 'sql' ,   });
+            const text = format(model.getValue(), { language: "n1ql" });
             return [
               {
                 range: model.getFullModelRange(),
@@ -49,8 +48,7 @@ export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
             ];
           },
         })
-
-      )
+      );
     }
     return () => {
       subs.forEach((sub) => sub.dispose());
