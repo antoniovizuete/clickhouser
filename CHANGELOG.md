@@ -1,3 +1,14 @@
+## [1.6.9](https://github.com/antoniovizuete/clickhouser/compare/v1.6.8...v1.6.9) (2023-02-06)
+
+
+### :recycle:
+
+* Change format language ([92a0b52](https://github.com/antoniovizuete/clickhouser/commit/92a0b52fcc785694eddc5a76fe79835f13cc05ed))
+
+### :rocket:
+
+* Add query formatter ([24ac480](https://github.com/antoniovizuete/clickhouser/commit/24ac4806b40c74a6b41de8687a69340fe9eef27d))
+
 ## [1.6.8](https://github.com/antoniovizuete/clickhouser/compare/v1.6.7...v1.6.8) (2023-01-23)
 
 
