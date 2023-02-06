@@ -8,6 +8,7 @@ import { useUrlState } from "./useUrlState";
 import { initialState } from "../hooks/useQueryForm";
 import { usePasswordContext } from "../contexts/usePassword";
 import { getTablesSuggestionProvider } from "../lib/editor-suggestions/tables.suggestion";
+import { format } from "sql-formatter";
 
 type Params = {
   jsonParams: string;
@@ -34,6 +35,19 @@ export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
           paremeterTypeSuggetionProvider.language,
           paremeterTypeSuggetionProvider.provider
         )
+      );
+      subs.push(
+        monaco.languages.registerDocumentFormattingEditProvider("sql", {
+          async provideDocumentFormattingEdits(model) {
+            const text = format(model.getValue(), { language: "n1ql" });
+            return [
+              {
+                range: model.getFullModelRange(),
+                text,
+              },
+            ];
+          },
+        })
       );
     }
     return () => {
