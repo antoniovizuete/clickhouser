@@ -1,6 +1,6 @@
 import { Tooltip2 } from "@blueprintjs/popover2";
 import { Cell, Column, Table2 } from "@blueprintjs/table";
-import { useTheme } from "../contexts/useTheme";
+import { useThemeContext } from "../contexts/useThemeContext";
 import { JsonResult } from "../lib/peform-query";
 
 type Params = {
@@ -8,7 +8,7 @@ type Params = {
 };
 
 export default function TableResult({ result }: Params) {
-  const { bpTheme } = useTheme();
+  const { bpTheme } = useThemeContext();
 
   const widths = Array.from(
     { length: Math.min(50, result.data.length) },

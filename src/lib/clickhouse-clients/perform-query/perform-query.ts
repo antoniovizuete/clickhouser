@@ -1,66 +1,10 @@
+import { checkUrl } from "../helpers";
+import { parseResponse, serializeParamValue } from "./helpers";
 import { Params, QueryResult } from "./types";
 
 type ReturnType = {
   error?: string;
   result?: QueryResult;
-};
-
-const parseResponse = (response: string): QueryResult => {
-  try {
-    if (response === "") {
-      return { message: "Ok" };
-    }
-    return JSON.parse(response);
-  } catch (e) {
-    return { value: response };
-  }
-};
-
-const transformBool = (value: boolean): string => (value ? "true" : "false");
-
-const serializeParamValue = (value: unknown) => {
-  if (value === null) {
-    return "";
-  }
-  if (Array.isArray(value)) {
-    if (value.length === 0) {
-      return "[]";
-    }
-
-    const [first] = value;
-
-    if (typeof first === "string") {
-      return `['${value.join("','")}']`;
-    }
-
-    if (typeof first === "number") {
-      return `[${value.join(",")}]`;
-    }
-
-    if (typeof first === "boolean") {
-      return `[${value.map(transformBool).join(",")}]`;
-    }
-
-    throw new Error(`Unsupported array type: ${typeof first}`);
-  }
-
-  if (typeof value === "string" || typeof value === "number") {
-    return value;
-  }
-  if (typeof value === "boolean") {
-    return transformBool(value);
-  }
-
-  throw new Error(`Unsupported type: ${typeof value}`);
-};
-
-const checkUrl = (url: string) => {
-  try {
-    new URL(url);
-  } catch (error) {
-    return false;
-  }
-  return true;
 };
 
 export async function performQuery({

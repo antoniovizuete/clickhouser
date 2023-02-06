@@ -1,17 +1,20 @@
-import { Alignment, Button, Icon, InputGroup, Navbar } from "@blueprintjs/core";
-import { Allotment } from "allotment";
-import { useRef, useState } from "react";
-import { QueryResult } from "../lib/peform-query";
-
-import Editor, { EditorRef } from "./Editor";
-import { useQueryForm } from "../hooks/useQueryForm";
+import { Alignment, Button, Navbar } from "@blueprintjs/core";
 import { Popover2 } from "@blueprintjs/popover2";
-import CopyUrlPopover from "./CopyUrlPopover";
-import Brand from "./Brand";
+import { Allotment } from "allotment";
+import { useMemo, useRef } from "react";
 import ContentEditable, { ContentEditableEvent } from "react-contenteditable";
+
+import { useConnectionContext } from "../contexts/useConnectionContext";
+import { useConnectionDrawer } from "../hooks/useConnectionDrawer";
+import { useQueryForm } from "../hooks/useQueryForm";
 import { useSetTitle } from "../hooks/useSetTitle";
-import { useTheme } from "../contexts/useTheme";
-import { usePasswordContext } from "../contexts/usePassword";
+import { QueryResult } from "../lib/clickhouse-clients";
+import Brand from "./Brand";
+import ConnectionCaption from "./ConnectionCaption";
+import CopyUrlPopover from "./CopyUrlPopover";
+import Editor, { EditorRef } from "./Editor";
+import SelectThemeButton from "./SelectThemeButton";
+import ThemedButton from "./ThemedButton";
 
 export type QueryFormProps = {
   onPerformQuery: () => void;
@@ -23,23 +26,30 @@ export type QueryFormProps = {
 export default function QueryForm(props: QueryFormProps) {
   const { paramsEditorRef } = props;
   const runQueryButtonRef = useRef<Button>(null);
-  const { password, setPassword } = usePasswordContext();
   const {
-    urlState: { query, serverAddress, username, jsonParams, name },
+    urlState: { query, jsonParams, name },
     setUrlState,
     runQuery,
     openHelpDialog,
     HotKeysHelpDialog,
   } = useQueryForm(props);
 
+  const [ConnectionsDrawer, openConnectionDrawer] = useConnectionDrawer();
+
   const [, setTitle] = useSetTitle(name);
-  const { bpTheme, toggleTheme } = useTheme();
 
   const handleOnChangeName = (e: ContentEditableEvent) => {
     const name = e.target.value.split("<div><br></div>").join("");
     setUrlState({ name });
     setTitle(name);
   };
+
+  const { activeConnectionId } = useConnectionContext();
+
+  const disableRunQueryButton = useMemo(
+    () => !query || !activeConnectionId,
+    [query, activeConnectionId]
+  );
 
   const clickOnRunQueryButton = () => {
     runQueryButtonRef.current?.buttonRef?.click();
@@ -54,75 +64,31 @@ export default function QueryForm(props: QueryFormProps) {
               <Navbar.Heading>
                 <Brand />
               </Navbar.Heading>
-              <div className="flex items-center gap-1">
-                <InputGroup
-                  className={`flex-grow ${bpTheme}`}
-                  leftIcon="globe-network"
-                  value={serverAddress}
-                  placeholder="Server address"
-                  onChange={(e) =>
-                    setUrlState({ serverAddress: e.target.value })
-                  }
-                  size={40}
-                />
-                <InputGroup
-                  className={bpTheme}
-                  leftIcon="user"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUrlState({ username: e.target.value })}
-                />
-                <InputGroup
-                  className={bpTheme}
-                  leftIcon="lock"
-                  placeholder="Password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="flex flex-row justify-start items-center ml-1 gap-1">
+              <div className="flex flex-row justify-start items-center mr-1 gap-1">
                 <Button
                   ref={runQueryButtonRef}
                   icon="play"
                   intent="warning"
                   aria-label="Run query"
                   onClick={runQuery}
-                  disabled={!query}
+                  disabled={disableRunQueryButton}
                 />
                 <Popover2 content={<CopyUrlPopover />} placement="bottom">
-                  <Button
-                    icon={
-                      <Icon
-                        icon="social-media"
-                        color={bpTheme ? "white" : "#383e47"}
-                      />
-                    }
-                    className={"dark:bg-[#383e47] dark:hover:bg-[#2f343c]"}
-                  />
+                  <ThemedButton icon="social-media" />
                 </Popover2>
+                <ThemedButton
+                  icon="data-connection"
+                  action={openConnectionDrawer}
+                />
+                <ConnectionCaption />
               </div>
             </Navbar.Group>
-            <Navbar.Group align={Alignment.RIGHT}>
-              <div className="flex flex-row justify-start items-center gap-1">
-                <Button
-                  className={"dark:bg-[#383e47] dark:hover:bg-[#2f343c]"}
-                  icon={
-                    <Icon
-                      icon={bpTheme ? "flash" : "moon"}
-                      color={bpTheme ? "white" : "#383e47"}
-                    />
-                  }
-                  onClick={toggleTheme}
-                ></Button>
-                <Button
-                  className={"dark:bg-[#383e47] dark:hover:bg-[#2f343c]"}
-                  icon={
-                    <Icon icon="help" color={bpTheme ? "white" : "#383e47"} />
-                  }
-                  onClick={openHelpDialog}
-                />
-              </div>
+            <Navbar.Group
+              align={Alignment.RIGHT}
+              className="flex flex-row justify-start items-center gap-1"
+            >
+              <SelectThemeButton />
+              <ThemedButton icon="help" action={openHelpDialog} />
             </Navbar.Group>
           </Navbar>
         </Allotment.Pane>
@@ -165,6 +131,7 @@ export default function QueryForm(props: QueryFormProps) {
         </Allotment.Pane>
       </Allotment>
       {HotKeysHelpDialog}
+      {ConnectionsDrawer}
     </>
   );
 }

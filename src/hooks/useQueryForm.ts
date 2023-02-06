@@ -1,14 +1,16 @@
 import { useCallback, useState } from "react";
 import { UrlState, useUrlState } from "./useUrlState";
-import { performQuery } from "../lib/peform-query";
 import { QueryFormProps } from "../components/QueryForm";
 import { useHotKeys } from "./useHotKeys";
-import { usePasswordContext } from "../contexts/usePassword";
+import { usePasswordContext } from "../contexts/usePasswordContext";
+import { useConnectionContext } from "../contexts/useConnectionContext";
+import {
+  performQuery,
+  transformConnectionToConnectionParams,
+} from "../lib/clickhouse-clients";
 
 export const initialState: UrlState = {
   query: "SELECT 1",
-  serverAddress: "http://localhost:8123/",
-  username: "default",
   jsonParams: '{\n  "param1": "value1",\n  "param2": "value2"\n}',
   name: "Untitled query",
 };
@@ -23,17 +25,37 @@ export const useQueryForm = ({
   });
 
   const { password } = usePasswordContext();
+  const { getActiveConnection } = useConnectionContext();
 
   const runQuery = useCallback(async () => {
     onPerformQuery?.();
-    const { error, result } = await performQuery({ ...urlState, password });
+    const connection = getActiveConnection();
+
+    if (!connection) {
+      onError?.("No active connection");
+      return;
+    }
+    const connectionParams = transformConnectionToConnectionParams(connection);
+    const { error, result } = await performQuery({
+      ...connectionParams,
+      ...urlState,
+      password,
+    });
     if (error) {
       onError?.(error);
     }
     if (result) {
       onSuccess?.(result);
     }
-  }, [onError, onSuccess, onPerformQuery, password, performQuery, urlState]);
+  }, [
+    onError,
+    onSuccess,
+    onPerformQuery,
+    password,
+    performQuery,
+    urlState,
+    getActiveConnection,
+  ]);
 
   const [HotKeysHelpDialog, openHelpDialog] = useHotKeys([
     {

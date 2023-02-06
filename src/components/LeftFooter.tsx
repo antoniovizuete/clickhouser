@@ -1,6 +1,6 @@
 import { Icon, Menu } from "@blueprintjs/core";
 import { MenuItem2, Popover2, Tooltip2 } from "@blueprintjs/popover2";
-import { useTheme } from "../contexts/useTheme";
+import { useThemeContext } from "../contexts/useThemeContext";
 import { download, KindEnum } from "../lib/file-downloader";
 import { JsonResult } from "../lib/peform-query";
 import {
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function LeftFooter({ result }: Props) {
-  const { bpTheme } = useTheme();
+  const { bpTheme } = useThemeContext();
   const { statistics, data } = result;
   const handleDownload = (kind: KindEnum) => () => {
     download(result, kind);

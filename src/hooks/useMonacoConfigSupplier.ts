@@ -6,7 +6,7 @@ import { paremeterSnippetSuggetionProvider } from "../lib/editor-suggestions/par
 import { paremeterTypeSuggetionProvider } from "../lib/editor-suggestions/parameter-type.suggestion";
 import { useUrlState } from "./useUrlState";
 import { initialState } from "../hooks/useQueryForm";
-import { usePasswordContext } from "../contexts/usePassword";
+import { usePasswordContext } from "../contexts/usePasswordContext";
 import { getTablesSuggestionProvider } from "../lib/editor-suggestions/tables.suggestion";
 
 type Params = {

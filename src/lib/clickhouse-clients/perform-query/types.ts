@@ -1,8 +1,7 @@
-export type Params = {
+import { ClickhouseConnectionParams } from "../types";
+
+export type Params = ClickhouseConnectionParams & {
   query?: string;
-  username: string;
-  password?: string;
-  serverAddress: string;
   jsonParams?: string;
 };
 
