@@ -30,12 +30,12 @@ Since the query parameters are passed as URL parameters, null values are not sup
 ```
 
 ```sql
-SELECT nullif('{{param1}}', '') AS param1
+SELECT nullif({param1:String}, '') AS param1
 ```
 
 ### Allow "Insecure content"
 
-Due to Clickhouser being accessible through a secured connection (HTTPS), you can get an error if you try to perform a query against a non-secured server (HTTP). There is a couple of workarounds, but only one depends on you by allowing "Insecure content".
+Due to ClickHouse being accessible through a secure connection (HTTPS), you may encounter an error if you attempt to perform a query on an insecure server (HTTP). There are several workaround options, but only one that depends on you, which is to allow "Insecure Content".
 
 Click on the lock icon in the URL bar, then click "Site settings".
 
