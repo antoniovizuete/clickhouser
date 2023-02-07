@@ -1,3 +1,10 @@
+## [1.6.10](https://github.com/antoniovizuete/clickhouser/compare/v1.6.9...v1.6.10) (2023-02-07)
+
+
+### :recycle:
+
+* Fix docs typos ([44c48ba](https://github.com/antoniovizuete/clickhouser/commit/44c48ba03f465ca21cddf3d357ab688970a917e4))
+
 ## [1.6.9](https://github.com/antoniovizuete/clickhouser/compare/v1.6.8...v1.6.9) (2023-02-06)
 
 

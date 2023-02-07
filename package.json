@@ -1,7 +1,7 @@
 {
   "name": "clickhouser",
   "private": true,
-  "version": "1.6.9",
+  "version": "1.6.10",
   "repository": {
     "type": "git",
     "url": "https://github.com/antoniovizuete/clickhouser.git"
