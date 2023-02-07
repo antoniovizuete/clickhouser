@@ -15,11 +15,11 @@
     "e2e": "playwright test"
   },
   "dependencies": {
-    "@blueprintjs/core": "4.11.6",
-    "@blueprintjs/popover2": "1.8.1",
-    "@blueprintjs/table": "4.7.5",
+    "@blueprintjs/core": "4.13.0",
+    "@blueprintjs/popover2": "1.10.2",
+    "@blueprintjs/table": "4.7.10",
     "@monaco-editor/react": "^4.4.6",
-    "allotment": "1.17.0",
+    "allotment": "1.18.0",
     "js-base64": "3.7.3",
     "monaco-editor": "0.34.1",
     "pgsql-ast-parser": "^11.0.0",
@@ -27,9 +27,9 @@
     "react-contenteditable": "3.3.6",
     "react-dom": "^18.0.0",
     "react-hotkeys-hook": "3.4.7",
-    "react-router-dom": "^6.4.3",
+    "react-router-dom": "6.6.1",
     "react-split": "2.0.14",
-    "sql-formatter": "^12.1.0"
+    "sql-formatter": "12.1.0"
   },
   "devDependencies": {
     "@playwright/test": "1.27.1",
