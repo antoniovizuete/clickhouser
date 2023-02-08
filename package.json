@@ -20,7 +20,7 @@
     "@blueprintjs/table": "4.7.13",
     "@monaco-editor/react": "^4.4.6",
     "allotment": "1.18.0",
-    "js-base64": "3.7.3",
+    "js-base64": "3.7.4",
     "monaco-editor": "0.34.1",
     "pgsql-ast-parser": "^11.0.0",
     "react": "^18.0.0",
