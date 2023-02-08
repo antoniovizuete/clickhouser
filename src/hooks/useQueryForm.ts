@@ -65,6 +65,7 @@ export const useQueryForm = ({
     },
   ]);
 
+
   return {
     HotKeysHelpDialog,
     openHelpDialog,

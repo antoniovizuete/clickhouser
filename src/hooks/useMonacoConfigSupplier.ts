@@ -7,7 +7,7 @@ import { getParemeterNameSuggetionProvider } from "../lib/editor-suggestions/par
 import { paremeterSnippetSuggetionProvider } from "../lib/editor-suggestions/parameter-snippet.suggestion";
 import { paremeterTypeSuggetionProvider } from "../lib/editor-suggestions/parameter-type.suggestion";
 import { getTablesSuggestionProvider } from "../lib/editor-suggestions/tables.suggestion";
-import { useUrlState } from "./useUrlState";
+import { format } from "sql-formatter";
 
 type Params = {
   jsonParams: string;
@@ -15,7 +15,6 @@ type Params = {
 
 export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
   const monaco = useMonaco();
-  const [urlState] = useUrlState({ initialState });
   const { getActiveConnection } = useConnectionContext();
   const [paramKeys, setParamKeys] = useState<string[]>([]);
   const [areSameParamKeys, setAreSameParamKeys] = useState(false);
@@ -34,6 +33,19 @@ export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
           paremeterTypeSuggetionProvider.language,
           paremeterTypeSuggetionProvider.provider
         )
+      );
+      subs.push(
+        monaco.languages.registerDocumentFormattingEditProvider("sql", {
+          async provideDocumentFormattingEdits(model) {
+            const text = format(model.getValue(), { language: "n1ql" });
+            return [
+              {
+                range: model.getFullModelRange(),
+                text,
+              },
+            ];
+          },
+        })
       );
     }
     return () => {
