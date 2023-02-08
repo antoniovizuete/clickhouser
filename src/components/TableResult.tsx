@@ -1,7 +1,7 @@
 import { Tooltip2 } from "@blueprintjs/popover2";
 import { Cell, Column, Table2 } from "@blueprintjs/table";
 import { useThemeContext } from "../contexts/useThemeContext";
-import { JsonResult } from "../lib/peform-query";
+import { JsonResult } from "../lib/clickhouse-clients";
 
 type Params = {
   result: JsonResult;

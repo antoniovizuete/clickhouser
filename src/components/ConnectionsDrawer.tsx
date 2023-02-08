@@ -13,7 +13,8 @@ import { forwardRef, useImperativeHandle, useState } from "react";
 import { useConnectionContext } from "../contexts/useConnectionContext";
 import { useThemeContext } from "../contexts/useThemeContext";
 import { useConnectionDialog } from "../hooks/useConnectionDialog";
-import { Connection, ConnectionId } from "../lib/clickhouse-clients";
+import { Connection } from "../lib/clickhouse-clients";
+import { getConnectionDisplay } from "../lib/connections-helpers";
 
 export type ConnectionsDrawerRef = {
   open: () => void;
@@ -155,8 +156,8 @@ const ConnectionsDrawer = forwardRef<ConnectionsDrawerRef, {}>((_, ref) => {
         onConfirm={handleConfirmRemove}
       >
         <p>
-          You are going to delete "{selectedConnetionToDelete?.name}"
-          connection.
+          You are going to delete "
+          {getConnectionDisplay(selectedConnetionToDelete)}" connection.
         </p>
         <p>Are you sure you want to remove this connection?</p>
       </Alert>

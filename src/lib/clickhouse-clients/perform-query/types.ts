@@ -1,6 +1,6 @@
-import { ClickhouseConnectionParams } from "../types";
+import { ConnectionBody } from "../types";
 
-export type Params = ClickhouseConnectionParams & {
+export type Params = ConnectionBody & {
   query?: string;
   jsonParams?: string;
 };

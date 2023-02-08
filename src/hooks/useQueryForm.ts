@@ -1,13 +1,9 @@
-import { useCallback, useState } from "react";
-import { UrlState, useUrlState } from "./useUrlState";
+import { useCallback } from "react";
 import { QueryFormProps } from "../components/QueryForm";
-import { useHotKeys } from "./useHotKeys";
-import { usePasswordContext } from "../contexts/usePasswordContext";
 import { useConnectionContext } from "../contexts/useConnectionContext";
-import {
-  performQuery,
-  transformConnectionToConnectionParams,
-} from "../lib/clickhouse-clients";
+import { performQuery } from "../lib/clickhouse-clients";
+import { useHotKeys } from "./useHotKeys";
+import { UrlState, useUrlState } from "./useUrlState";
 
 export const initialState: UrlState = {
   query: "SELECT 1",
@@ -24,7 +20,6 @@ export const useQueryForm = ({
     initialState,
   });
 
-  const { password } = usePasswordContext();
   const { getActiveConnection } = useConnectionContext();
 
   const runQuery = useCallback(async () => {
@@ -35,11 +30,11 @@ export const useQueryForm = ({
       onError?.("No active connection");
       return;
     }
-    const connectionParams = transformConnectionToConnectionParams(connection);
+
     const { error, result } = await performQuery({
-      ...connectionParams,
-      ...urlState,
-      password,
+      ...connection,
+      query: urlState.query,
+      jsonParams: urlState.jsonParams,
     });
     if (error) {
       onError?.(error);
@@ -51,7 +46,6 @@ export const useQueryForm = ({
     onError,
     onSuccess,
     onPerformQuery,
-    password,
     performQuery,
     urlState,
     getActiveConnection,
@@ -62,7 +56,7 @@ export const useQueryForm = ({
       combo: "cmd+enter",
       description: "Run query",
       callback: () => runQuery(),
-      deps: [runQuery, urlState, password],
+      deps: [runQuery, urlState, getActiveConnection],
     },
     {
       combo: "alt+h, option+h",

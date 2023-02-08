@@ -1,7 +1,7 @@
 import { Allotment } from "allotment";
 import { useRef, useState } from "react";
 
-import { QueryResult } from "../lib/peform-query";
+import { QueryResult } from "../lib/clickhouse-clients";
 import Footer from "./Footer";
 import MonacoWrapper from "./MonacoWrapper";
 import QueryForm from "./QueryForm";

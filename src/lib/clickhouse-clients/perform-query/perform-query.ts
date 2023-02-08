@@ -1,4 +1,4 @@
-import { checkUrl } from "../helpers";
+import { checkUrl, transformConnectionToConnectionParams } from "../helpers";
 import { parseResponse, serializeParamValue } from "./helpers";
 import { Params, QueryResult } from "./types";
 
@@ -9,10 +9,8 @@ type ReturnType = {
 
 export async function performQuery({
   query,
-  username,
-  password,
-  serverAddress,
   jsonParams = "{}",
+  ...connection
 }: Params): Promise<ReturnType> {
   if (!query) {
     return {
@@ -20,17 +18,8 @@ export async function performQuery({
     };
   }
 
-  if (!serverAddress) {
-    return {
-      error: "Server address is empty",
-    };
-  }
-
-  if (!checkUrl(serverAddress)) {
-    return {
-      error: "Server address is invalid",
-    };
-  }
+  const { serverAddress, username, password } =
+    transformConnectionToConnectionParams(connection);
 
   const promise = new Promise<QueryResult>((resolve, reject) => {
     const userParams: string[] = [];

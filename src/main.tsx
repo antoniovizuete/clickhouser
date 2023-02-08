@@ -10,23 +10,20 @@ import "../node_modules/normalize.css/normalize.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./components/App";
-import "./main.css";
-import { ThemeProvider } from "./contexts/useThemeContext";
-import { PasswordProvider } from "./contexts/usePasswordContext";
 import { ConnectionsProvider } from "./contexts/useConnectionContext";
+import { ThemeProvider } from "./contexts/useThemeContext";
+import "./main.css";
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <PasswordProvider>
-      <ThemeProvider>
-        <ConnectionsProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="*" element={<App />} />
-            </Routes>
-          </BrowserRouter>
-        </ConnectionsProvider>
-      </ThemeProvider>
-    </PasswordProvider>
+    <ThemeProvider>
+      <ConnectionsProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<App />} />
+          </Routes>
+        </BrowserRouter>
+      </ConnectionsProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );

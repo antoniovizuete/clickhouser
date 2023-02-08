@@ -2,7 +2,7 @@ import { Icon, Menu } from "@blueprintjs/core";
 import { MenuItem2, Popover2, Tooltip2 } from "@blueprintjs/popover2";
 import { useThemeContext } from "../contexts/useThemeContext";
 import { download, KindEnum } from "../lib/file-downloader";
-import { JsonResult } from "../lib/peform-query";
+import { JsonResult } from "../lib/clickhouse-clients";
 import {
   formatReadableBytes,
   formatReadableRows,

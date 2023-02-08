@@ -1,4 +1,4 @@
-import { JsonResult } from "./peform-query";
+import { JsonResult } from "./clickhouse-clients";
 
 export enum KindEnum {
   RAW = "RAW",

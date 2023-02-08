@@ -80,14 +80,12 @@ const ConenctionsDialog = forwardRef<ConnectionDialogRef, Props>(({}, ref) => {
   const test = async () => {
     const { error } = await performQuery({
       query: "SELECT 1",
-      ...transformConnectionToConnectionParams({
-        name,
-        host,
-        port,
-        username,
-        password,
-        secure,
-      }),
+      name,
+      host,
+      port,
+      username,
+      password,
+      secure,
     });
     if (error) {
       AppToaster.top.error(error);
