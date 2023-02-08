@@ -107,17 +107,16 @@ const ConnectionsDrawer = forwardRef<ConnectionsDrawerRef, {}>((_, ref) => {
                     round
                     onClick={() => setActiveConnection(connection)}
                   >
-                    <div className={`flex-grow ${active ? "font-bold" : ""}`}>
-                      {!!connection.name ? (
-                        connection.name
-                      ) : (
-                        <>
-                          {connection.username}:*****@{connection.host}:
-                          {connection.port}
-                        </>
-                      )}
+                    <div
+                      className={`flex-grow flex flex-row justify-between items-center ${
+                        active ? "font-bold" : ""
+                      }`}
+                    >
+                      <div className="flex-grow">
+                        {getConnectionDisplay({ connection })}
+                      </div>
                       {connection.id === activeConnection?.id && (
-                        <span className="text-xs"> - Active</span>
+                        <Icon icon="link" className="ml-" />
                       )}
                     </div>
                   </Tag>
