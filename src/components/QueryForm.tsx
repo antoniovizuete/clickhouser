@@ -5,6 +5,7 @@ import { useMemo, useRef } from "react";
 import ContentEditable, { ContentEditableEvent } from "react-contenteditable";
 
 import { useConnectionContext } from "../contexts/useConnectionContext";
+import { useThemeContext } from "../contexts/useThemeContext";
 import { useConnectionDrawer } from "../hooks/useConnectionDrawer";
 import { useQueryForm } from "../hooks/useQueryForm";
 import { useSetTitle } from "../hooks/useSetTitle";
@@ -24,6 +25,7 @@ export type QueryFormProps = {
 };
 
 export default function QueryForm(props: QueryFormProps) {
+  const { bpTheme } = useThemeContext();
   const { paramsEditorRef } = props;
   const runQueryButtonRef = useRef<Button>(null);
   const {
@@ -73,7 +75,11 @@ export default function QueryForm(props: QueryFormProps) {
                   onClick={runQuery}
                   disabled={disableRunQueryButton}
                 />
-                <Popover2 content={<CopyUrlPopover />} placement="bottom">
+                <Popover2
+                  className={bpTheme}
+                  content={<CopyUrlPopover />}
+                  placement="bottom"
+                >
                   <ThemedButton icon="social-media" />
                 </Popover2>
                 <ThemedButton
