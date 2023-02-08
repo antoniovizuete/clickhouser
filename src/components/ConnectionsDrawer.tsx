@@ -74,7 +74,7 @@ const ConnectionsDrawer = forwardRef<ConnectionsDrawerRef, {}>((_, ref) => {
         icon="data-connection"
         isOpen={isOpen}
         onClose={close}
-        position="right"
+        position="left"
         size={DrawerSize.SMALL}
         title={
           <div className="flex flex-row justify-end items-center gap-1 mr-0.5">
@@ -157,7 +157,8 @@ const ConnectionsDrawer = forwardRef<ConnectionsDrawerRef, {}>((_, ref) => {
       >
         <p>
           You are going to delete "
-          {getConnectionDisplay(selectedConnetionToDelete)}" connection.
+          {getConnectionDisplay({ connection: selectedConnetionToDelete })}"
+          connection.
         </p>
         <p>Are you sure you want to remove this connection?</p>
       </Alert>

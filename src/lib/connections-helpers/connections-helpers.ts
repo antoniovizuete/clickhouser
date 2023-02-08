@@ -1,14 +1,24 @@
 import { Connection } from "../clickhouse-clients";
 
-export const getConnectionDisplay = (connection?: Connection) => {
+type Params = {
+  connection?: Connection;
+  excerpt?: boolean;
+  showName?: boolean;
+};
+
+export const getConnectionDisplay = ({
+  connection,
+  excerpt = true,
+  showName = true,
+}: Params) => {
   if (!connection) {
     return "";
   }
   const { name, host, port, username } = connection;
-  if (name) {
+  if (name && showName) {
     return name;
   }
   return `${username}:*****@${
-    host.length > 30 ? host.slice(0, 30) + "..." : host
+    host.length > 30 && excerpt ? host.slice(0, 30) + "..." : host
   }:${port}`;
 };

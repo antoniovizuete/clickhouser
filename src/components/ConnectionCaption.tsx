@@ -1,4 +1,5 @@
 import { useConnectionContext } from "../contexts/useConnectionContext";
+import { getConnectionDisplay } from "../lib/connections-helpers";
 
 export default function ConnectionCaption() {
   const { getActiveConnection } = useConnectionContext();
@@ -13,8 +14,11 @@ export default function ConnectionCaption() {
       {activeConnection.name}{" "}
       <span className="text-neutral-400 text-xs">
         {activeConnection.name ? "(" : ""}
-        {activeConnection.username}:*****@{activeConnection.host}:
-        {activeConnection.port}
+        {getConnectionDisplay({
+          connection: activeConnection,
+          showName: false,
+          excerpt: !!activeConnection.name,
+        })}
         {activeConnection.name ? ")" : ""}
       </span>
     </div>
