@@ -1,3 +1,10 @@
+## [1.6.11](https://github.com/antoniovizuete/clickhouser/compare/v1.6.10...v1.6.11) (2023-02-13)
+
+
+### :bug:
+
+* Render Map and Array types properly ([49498bc](https://github.com/antoniovizuete/clickhouser/commit/49498bc1aa0a9e722069ae0283383b15859eef8e))
+
 ## [1.6.10](https://github.com/antoniovizuete/clickhouser/compare/v1.6.9...v1.6.10) (2023-02-07)
 
 

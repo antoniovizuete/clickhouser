@@ -33,7 +33,7 @@ export default function TableResult({ result }: Params) {
       )
     )
     .reduce((acc, curr) => acc.map((accCell, i) => Math.max(accCell, curr[i])));
-
+  console.log(result);
   const tableDatasetComponents = result.meta.map((meta, columnNumber) => (
     <Column
       key={meta.name}
@@ -45,6 +45,15 @@ export default function TableResult({ result }: Params) {
           return (
             <Cell>
               <div className="text-gray-400 font-mono">(null)</div>
+            </Cell>
+          );
+        }
+        if (meta.type.includes("Map(") || meta.type.includes("Array(")) {
+          return (
+            <Cell>
+              <div className="text-gray-400 font-mono">
+                {JSON.stringify(rawValue)}
+              </div>
             </Cell>
           );
         }
