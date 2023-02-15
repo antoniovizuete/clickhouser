@@ -183,7 +183,11 @@ const ConenctionsDialog = forwardRef<ConnectionDialogRef, Props>(({}, ref) => {
               onChange={(e) => setPassword(e.target.value || "")}
               size={40}
               rightElement={
-                <Tooltip2 content="The password is stored on local storage as plain text. Be careful!">
+                <Tooltip2
+                  content="The password is stored on local storage as plain text. Be careful!"
+                  intent="warning"
+                  placement="top"
+                >
                   <Tag minimal intent="warning">
                     <Icon intent="warning" icon="warning-sign" />
                   </Tag>
