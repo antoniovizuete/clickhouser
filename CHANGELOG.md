@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/antoniovizuete/clickhouser/compare/v1.7.0...v1.7.1) (2023-02-16)
+
+
+### :fire:
+
+* Remove console.log ([57139b8](https://github.com/antoniovizuete/clickhouser/commit/57139b820613a5040e292d3335a605b84988007e))
+
 # [1.7.0](https://github.com/antoniovizuete/clickhouser/compare/v1.6.11...v1.7.0) (2023-02-16)
 
 
