@@ -1,3 +1,37 @@
+# [1.7.0](https://github.com/antoniovizuete/clickhouser/compare/v1.6.11...v1.7.0) (2023-02-16)
+
+
+### :ambulance:
+
+* Fix CVE-2022-25881 ([da9de50](https://github.com/antoniovizuete/clickhouser/commit/da9de50fb2c131fa299df719ac4305c99cc2c74a))
+
+### :art:
+
+* Improve Connections UI ([6e52bea](https://github.com/antoniovizuete/clickhouser/commit/6e52bea83e2c88c769113ebda89f1c4b3d65d0fe))
+* Restyle warning ([57daadd](https://github.com/antoniovizuete/clickhouser/commit/57daadd20592da96018051541754e6f9d3a8e87a))
+* Some UX improvements ([94f6794](https://github.com/antoniovizuete/clickhouser/commit/94f67941ed4f329ffa6e26007257de3ee17239ce))
+
+### :fire:
+
+* Remove unused context and refactor ([81e5589](https://github.com/antoniovizuete/clickhouser/commit/81e558990729004a60497f21f4e5a8783f57a221))
+
+### :recycle:
+
+* Add dark theme to CopyUrlPopover and fix a text ([b318d04](https://github.com/antoniovizuete/clickhouser/commit/b318d040a2f7eb9804a34b0b43249adc29f3d575))
+* Do Cristian suggestions ([05eab51](https://github.com/antoniovizuete/clickhouser/commit/05eab51fb2d5ab86a7070185be0d589cc981f2a9))
+
+### :sparkles:
+
+* New way to handle the connections ([efe2dae](https://github.com/antoniovizuete/clickhouser/commit/efe2daea8ee379de8dc326dc0d73718189865384))
+
+### :white_check_mark:
+
+* Adapt test to the new navbar ([af90849](https://github.com/antoniovizuete/clickhouser/commit/af908499b7d2198dbb1618e1e4d9e0163f7f06a3))
+
+### :wip:
+
+* Update package-lock ([3ffddac](https://github.com/antoniovizuete/clickhouser/commit/3ffddaca234da6a981ccbc4f79db35db4ca91fba))
+
 ## [1.6.11](https://github.com/antoniovizuete/clickhouser/compare/v1.6.10...v1.6.11) (2023-02-13)
 
 
