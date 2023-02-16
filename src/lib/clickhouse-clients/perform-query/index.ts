@@ -1,4 +1,4 @@
-export { isJsonResult, isStringResult } from "./guards";
+export { isJsonResult, isStringResult, isMessageResult } from "./guards";
 export { performQuery } from "./perform-query";
 export type {
   JsonResult,

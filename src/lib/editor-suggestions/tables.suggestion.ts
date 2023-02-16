@@ -1,13 +1,10 @@
 import { languages } from "monaco-editor/esm/vs/editor/editor.api";
-import { UrlState } from "../../hooks/useUrlState";
-import { isJsonResult, performQuery } from "../peform-query";
+import { Connection, isJsonResult, performQuery } from "../clickhouse-clients";
+
 import { SuggestionProvider } from "./types";
 import { noopProvider } from "./utils";
 
-type Params = Pick<UrlState, "serverAddress" | "username"> & {
-  password: string | undefined;
-};
-const getTables = async (params: Params) => {
+const getTables = async (params: Connection) => {
   const { result } = await performQuery({
     ...params,
     query: "SELECT database, name FROM system.tables",
@@ -26,7 +23,7 @@ const getTables = async (params: Params) => {
 const language = "sql";
 
 export const getTablesSuggestionProvider = async (
-  params: Params
+  params: Connection
 ): Promise<SuggestionProvider> => {
   const tables = await getTables(params);
 

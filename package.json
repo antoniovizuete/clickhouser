@@ -11,23 +11,24 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "if [ -z \"$CI\" ]; then husky install ; fi",
+    "preinstall": "npx npm-force-resolutions",
     "semantic-release": "semantic-release",
     "e2e": "playwright test"
   },
   "dependencies": {
-    "@blueprintjs/core": "4.13.0",
-    "@blueprintjs/popover2": "1.10.2",
-    "@blueprintjs/table": "4.7.10",
+    "@blueprintjs/core": "4.14.2",
+    "@blueprintjs/popover2": "1.11.2",
+    "@blueprintjs/table": "4.7.13",
     "@monaco-editor/react": "^4.4.6",
     "allotment": "1.18.0",
-    "js-base64": "3.7.3",
+    "js-base64": "3.7.4",
     "monaco-editor": "0.34.1",
     "pgsql-ast-parser": "^11.0.0",
     "react": "^18.0.0",
     "react-contenteditable": "3.3.6",
     "react-dom": "^18.0.0",
     "react-hotkeys-hook": "3.4.7",
-    "react-router-dom": "6.6.1",
+    "react-router-dom": "6.6.2",
     "react-split": "2.0.14",
     "sql-formatter": "12.1.0"
   },
@@ -56,5 +57,8 @@
       "yarn lint",
       "git add"
     ]
+  },
+  "resolutions": {
+    "http-cache-semantics": "4.1.1"
   }
 }

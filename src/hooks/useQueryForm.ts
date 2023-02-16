@@ -1,14 +1,12 @@
-import { useCallback, useState } from "react";
-import { UrlState, useUrlState } from "./useUrlState";
-import { performQuery } from "../lib/peform-query";
+import { useCallback } from "react";
 import { QueryFormProps } from "../components/QueryForm";
+import { useConnectionContext } from "../contexts/useConnectionContext";
+import { performQuery } from "../lib/clickhouse-clients";
 import { useHotKeys } from "./useHotKeys";
-import { usePasswordContext } from "../contexts/usePassword";
+import { UrlState, useUrlState } from "./useUrlState";
 
 export const initialState: UrlState = {
   query: "SELECT 1",
-  serverAddress: "http://localhost:8123/",
-  username: "default",
   jsonParams: '{\n  "param1": "value1",\n  "param2": "value2"\n}',
   name: "Untitled query",
 };
@@ -22,25 +20,43 @@ export const useQueryForm = ({
     initialState,
   });
 
-  const { password } = usePasswordContext();
+  const { getActiveConnection } = useConnectionContext();
 
   const runQuery = useCallback(async () => {
     onPerformQuery?.();
-    const { error, result } = await performQuery({ ...urlState, password });
+    const connection = getActiveConnection();
+
+    if (!connection) {
+      onError?.("No active connection");
+      return;
+    }
+
+    const { error, result } = await performQuery({
+      ...connection,
+      query: urlState.query,
+      jsonParams: urlState.jsonParams,
+    });
     if (error) {
       onError?.(error);
     }
     if (result) {
       onSuccess?.(result);
     }
-  }, [onError, onSuccess, onPerformQuery, password, performQuery, urlState]);
+  }, [
+    onError,
+    onSuccess,
+    onPerformQuery,
+    performQuery,
+    urlState,
+    getActiveConnection,
+  ]);
 
   const [HotKeysHelpDialog, openHelpDialog] = useHotKeys([
     {
       combo: "cmd+enter",
       description: "Run query",
       callback: () => runQuery(),
-      deps: [runQuery, urlState, password],
+      deps: [runQuery, urlState, getActiveConnection],
     },
     {
       combo: "alt+h, option+h",

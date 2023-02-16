@@ -5,7 +5,7 @@ import {
   KeyMod,
 } from "monaco-editor/esm/vs/editor/editor.api";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
-import { useTheme } from "../contexts/useTheme";
+import { useThemeContext } from "../contexts/useThemeContext";
 import { addAction } from "../lib/editor-helpers/add-action.editor.helper";
 
 type EditorProps = {
@@ -64,7 +64,7 @@ const Editor = forwardRef<EditorRef, EditorProps>((props, ref) => {
     onChange?.(value);
   };
 
-  const { theme } = useTheme();
+  const { theme } = useThemeContext();
 
   return (
     <MonacoEditor

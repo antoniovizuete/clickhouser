@@ -1,12 +1,11 @@
 import { useMonaco } from "@monaco-editor/react";
 import { IDisposable } from "monaco-editor/esm/vs/editor/editor.api";
 import { useEffect, useState } from "react";
+import { useConnectionContext } from "../contexts/useConnectionContext";
+import { initialState } from "../hooks/useQueryForm";
 import { getParemeterNameSuggetionProvider } from "../lib/editor-suggestions/parameter-name.suggestion";
 import { paremeterSnippetSuggetionProvider } from "../lib/editor-suggestions/parameter-snippet.suggestion";
 import { paremeterTypeSuggetionProvider } from "../lib/editor-suggestions/parameter-type.suggestion";
-import { useUrlState } from "./useUrlState";
-import { initialState } from "../hooks/useQueryForm";
-import { usePasswordContext } from "../contexts/usePassword";
 import { getTablesSuggestionProvider } from "../lib/editor-suggestions/tables.suggestion";
 import { format } from "sql-formatter";
 
@@ -16,8 +15,7 @@ type Params = {
 
 export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
   const monaco = useMonaco();
-  const [urlState] = useUrlState({ initialState });
-  const { password } = usePasswordContext();
+  const { getActiveConnection } = useConnectionContext();
   const [paramKeys, setParamKeys] = useState<string[]>([]);
   const [areSameParamKeys, setAreSameParamKeys] = useState(false);
 
@@ -98,21 +96,19 @@ export const useMonacoConfigSupplier = ({ jsonParams }: Params) => {
 
   useEffect(() => {
     let subs: IDisposable[] = [];
-
-    if (monaco) {
-      getTablesSuggestionProvider({
-        password,
-        ...urlState,
-      }).then(({ provider, language }) =>
-        subs.push(
-          monaco.languages.registerCompletionItemProvider(language, provider)
-        )
+    const activeConnection = getActiveConnection();
+    if (monaco && activeConnection) {
+      getTablesSuggestionProvider(activeConnection).then(
+        ({ provider, language }) =>
+          subs.push(
+            monaco.languages.registerCompletionItemProvider(language, provider)
+          )
       );
     }
     return () => {
       subs.forEach((sub) => sub.dispose());
     };
-  }, [monaco, password]);
+  }, [monaco, getActiveConnection]);
 };
 
 const arraysAreEqual = (array1: string[], array2: string[]): boolean =>

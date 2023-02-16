@@ -1,8 +1,7 @@
-export type Params = {
+import { ConnectionBody } from "../types";
+
+export type Params = ConnectionBody & {
   query?: string;
-  username: string;
-  password?: string;
-  serverAddress: string;
   jsonParams?: string;
 };
 

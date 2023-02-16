@@ -1,4 +1,4 @@
-import { isJsonResult, QueryResult } from "../lib/peform-query";
+import { isJsonResult, QueryResult } from "../lib/clickhouse-clients";
 import LeftFooter from "./LeftFooter";
 
 type Props = {

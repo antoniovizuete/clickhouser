@@ -1,7 +1,11 @@
 import { Icon, NonIdealState, Spinner } from "@blueprintjs/core";
-import { useTheme } from "../contexts/useTheme";
-import { isStringResult, QueryResult } from "../lib/peform-query";
-import { isMessageResult } from "../lib/peform-query/guards";
+import { useThemeContext } from "../contexts/useThemeContext";
+import {
+  isMessageResult,
+  isStringResult,
+  QueryResult,
+} from "../lib/clickhouse-clients";
+
 import Brand from "./Brand";
 import TableResult from "./TableResult";
 
@@ -12,7 +16,7 @@ type Params = {
 };
 
 export default function Result({ result, error, loading }: Params) {
-  const { theme, bpTheme } = useTheme();
+  const { theme, bpTheme } = useThemeContext();
   if (error) {
     return (
       <div className="overflow-auto h-full flex flex-col gap-5 p-5 justify-center items-center ">

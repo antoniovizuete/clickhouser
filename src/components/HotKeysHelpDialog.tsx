@@ -1,6 +1,6 @@
 import { Classes, Dialog, Tag } from "@blueprintjs/core";
 import { forwardRef, useImperativeHandle, useState } from "react";
-import { useTheme } from "../contexts/useTheme";
+import { useThemeContext } from "../contexts/useThemeContext";
 import { HotKey } from "../hooks/useHotKeys/types";
 import Brand from "./Brand";
 
@@ -40,7 +40,7 @@ const trasformToSymbol = (key: string) => {
 
 const HotKeysHelpDialog = forwardRef<HotKeysHelpDialogRef, Props>(
   ({ hotKeys }, ref) => {
-    const { bpTheme } = useTheme();
+    const { bpTheme } = useThemeContext();
     const [isOpen, setIsOpen] = useState(false);
     const close = () => setIsOpen(false);
     const open = () => setIsOpen(true);

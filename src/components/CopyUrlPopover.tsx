@@ -1,7 +1,9 @@
 import { Button, InputGroup } from "@blueprintjs/core";
 import { useState } from "react";
+import { useThemeContext } from "../contexts/useThemeContext";
 
 export default function CopyUrlPopover() {
+  const { theme } = useThemeContext();
   const [showCopied, setShowCopied] = useState(false);
 
   const copyUrl = () => {
@@ -13,9 +15,9 @@ export default function CopyUrlPopover() {
   return (
     <div className="w-[30vw] p-5 flex flex-col gap-4">
       <h2 className="text-lg">Share your query</h2>
-      <h6 className="text-xs text-gray-500">
-        We don't store or serialize the password, so it{" "}
-        <span className="font-bold">never</span> will be shared or persisted.
+      <h6 className="text-xs text-gray-500 dark:text-gray-400">
+        We don't store or serialize the password, so it will{" "}
+        <span className="font-bold">never</span> be shared or persisted.
       </h6>
 
       <div className="w-full">

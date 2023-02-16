@@ -5,8 +5,6 @@ import { useSearchParams } from "react-router-dom";
 export type UrlState = {
   jsonParams?: string;
   query?: string;
-  serverAddress: string;
-  username: string;
   name: string;
 };
 
@@ -25,34 +23,18 @@ export default function debounce(
   };
 }
 
-const serialize = ({
-  serverAddress,
-  username,
-  jsonParams,
-  query,
-  name,
-}: UrlState): string =>
-  [
-    encode(jsonParams ?? ""),
-    encode(query ?? ""),
-    encode(serverAddress),
-    encode(username),
-    encode(name),
-  ].join(SEPARATOR);
+const serialize = ({ jsonParams, query, name }: UrlState): string =>
+  [encode(jsonParams ?? ""), encode(query ?? ""), encode(name)].join(SEPARATOR);
 
 const deserialize = (
   encodedState: string,
   defaultState: UrlState
 ): UrlState => {
-  const [jsonParams, query, serverAddress, username, name] = encodedState
-    .split(SEPARATOR)
-    .map(decode);
+  const [jsonParams, query, name] = encodedState.split(SEPARATOR).map(decode);
 
   return {
     jsonParams: jsonParams ?? defaultState.jsonParams,
     query: query ?? defaultState.query,
-    serverAddress: serverAddress ?? defaultState.serverAddress,
-    username: username ?? defaultState.username,
     name: name ?? defaultState.name,
   };
 };
