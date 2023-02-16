@@ -44,6 +44,10 @@ const ConenctionsDialog = forwardRef<ConnectionDialogRef, Props>(({}, ref) => {
   const [secure, setSecure] = useState(connection?.secure || false);
 
   useEffect(() => {
+    setTested(false);
+  }, [host, port, username, password, secure]);
+
+  useEffect(() => {
     if (connection) {
       setName(connection.name);
       setHost(connection.host);
@@ -90,7 +94,7 @@ const ConenctionsDialog = forwardRef<ConnectionDialogRef, Props>(({}, ref) => {
     if (error) {
       AppToaster.top.error(error);
     } else {
-      AppToaster.top.success("Connection successful");
+      AppToaster.top.success("The connection has been tested successfully");
     }
 
     setTested(!error);
@@ -113,6 +117,7 @@ const ConenctionsDialog = forwardRef<ConnectionDialogRef, Props>(({}, ref) => {
     } else {
       insert(connectionToSave);
     }
+    AppToaster.top.success("The connection has been saved successfully");
     close();
   };
 

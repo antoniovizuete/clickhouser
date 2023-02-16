@@ -15,6 +15,7 @@ import { useThemeContext } from "../contexts/useThemeContext";
 import { useConnectionDialog } from "../hooks/useConnectionDialog";
 import { Connection } from "../lib/clickhouse-clients";
 import { getConnectionDisplay } from "../lib/connections-helpers";
+import { AppToaster } from "../lib/toaster/AppToaster";
 
 export type ConnectionsDrawerRef = {
   open: () => void;
@@ -57,6 +58,11 @@ const ConnectionsDrawer = forwardRef<ConnectionsDrawerRef, {}>((_, ref) => {
   const handleConfirmRemove = () => {
     if (selectedConnetionToDelete) {
       remove(selectedConnetionToDelete);
+      AppToaster.top.warn(
+        `The connection ${getConnectionDisplay({
+          connection: selectedConnetionToDelete,
+        })} was removed`
+      );
       handleAlertClose();
     }
   };
@@ -106,13 +112,14 @@ const ConnectionsDrawer = forwardRef<ConnectionsDrawerRef, {}>((_, ref) => {
                     fill
                     round
                     onClick={() => setActiveConnection(connection)}
+                    onDoubleClick={() => handleEditClick(connection)}
                   >
                     <div
                       className={`flex-grow flex flex-row justify-between items-center ${
                         active ? "font-bold" : ""
                       }`}
                     >
-                      <div className="flex-grow">
+                      <div className="flex-grow select-none">
                         {getConnectionDisplay({ connection })}
                       </div>
                       {connection.id === activeConnection?.id && (
